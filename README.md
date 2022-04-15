@@ -26,7 +26,7 @@ A small API that sends anime/hentai images in JSON.
 - I don't recommend using my stuff but only for testing purposes (maybe).
 
 What is the difference between version 1 and version 2
-The backend of both of the versions are completely different and optimized for different types of workload due to this (v1)[https://github.com/CFCorp/CFsAPI] will be depreciated and not accessable anymore in the future when (v2)[https://github.com/CFCorp/CFApi2] is fully released
+The backend of both of the versions are completely different and optimized for different types of workload due to this [v1](https://github.com/CFCorp/CFsAPI) will be depreciated and not accessable anymore in the future when [v2](https://github.com/CFCorp/CFApi2) is fully released
 
 # Requirements:
 - Web server (Apache/Nginx, PHP, MySQL)
