@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\CustomAuthController;
 
 
 function getData($name){
@@ -92,3 +93,10 @@ Route::get('/v2/yuri', function (Request $request) {
         'Cache-Control' => 'no-cache',
     ]);
 })->name('yuri');
+
+
+Route::get('login', [CustomAuthController::class, 'index'])->name('login');
+Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom'); 
+Route::get('registration', [CustomAuthController::class, 'registration'])->name('register-user');
+Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom'); 
+Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');

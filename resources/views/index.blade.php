@@ -42,26 +42,26 @@
                     <img draggable="false" src="{{ asset('profile/profile.png') }}" class="image-title">
                 </div>
                 <div class="unset">
-                    <h1 class="title monospace">CFs API</h1>
+                    <h1 class="title monospace computerfreaker-text">CF's API</h1>
                     <h5 class="cubered-text">click one of the buttons to go to the corresponding API endpoint.</h5>
                 </div>
             </section>
             <section class="buttons">
-                <a href="{{ route('anime') }}" class="btn animation hover-scale emerald-text pomegranate-bg black-dropshadow" target="">Anime</a>
-                <a href="{{ route('hentai') }}" class="btn animation hover-scale emerald-text pomegranate-bg black-dropshadow" target="">Hentai</a>
-                <a href="{{ route('yuri') }}" class="btn animation hover-scale emerald-text pomegranate-bg black-dropshadow" target="">Yuri</a>
+                <a href="{{ route('anime') }}" class="btn github animation hover-scale snapchat-text computerfreaker-bg black-dropshadow" target="">Anime</a>
+                <a href="{{ route('hentai') }}" class="btn animation hover-scale snapchat-text computerfreaker-bg black-dropshadow" target="">Hentai</a>
+                <a href="{{ route('yuri') }}" class="btn animation hover-scale snapchat-text computerfreaker-bg black-dropshadow" target="">Yuri</a>
+                <a href="{{ route('dva') }}" class="btn animation hover-scale snapchat-text computerfreaker-bg black-dropshadow" target="">D.VA</a>
+                <a href="{{ route('trap') }}" class="btn animation hover-scale snapchat-text computerfreaker-bg black-dropshadow" target="">Trap</a>
             </section>
             <section class="buttons">
-                <a href="{{ route('dva') }}" class="btn animation hover-scale emerald-text pomegranate-bg black-dropshadow" target="">D.VA</a>
-                <a href="{{ route('trap') }}" class="btn animation hover-scale emerald-text pomegranate-bg black-dropshadow" target="">Trap</a>
-                <a href="{{ route('hug') }}" class="btn animation hover-scale emerald-text pomegranate-bg black-dropshadow" target="">Hug</a>
-                <a href="{{ route('neko') }}" class="btn animation hover-scale emerald-text pomegranate-bg black-dropshadow" target="">Neko</a>
+                <a href="{{ route('hug') }}" class="btn animation hover-scale snapchat-text computerfreaker-bg black-dropshadow" target="">Hug</a>
+                <a href="{{ route('neko') }}" class="btn animation hover-scale snapchat-text computerfreaker-bg black-dropshadow" target="">Neko</a>
+                <a href="{{ route('nsfwneko') }}" class="btn animation hover-scale snapchat-text computerfreaker-bg black-dropshadow" target="">NSFW Neko</a>
+                <a href="{{ route('baguette') }}" class="btn animation hover-scale snapchat-text computerfreaker-bg black-dropshadow" target="">Baguette</a>
             </section>
             <section class="buttons">
-                <a href="{{ route('nsfwneko') }}" class="btn animation hover-scale emerald-text pomegranate-bg black-dropshadow" target="">NSFW Neko</a>
-                <a href="{{ route('baguette') }}" class="btn animation hover-scale emerald-text pomegranate-bg black-dropshadow" target="">Baguette</a>
-                <a href="https://discord.gg/DDRbw7W" class="btn animation hover-scale emerald-text pomegranate-bg black-dropshadow" target="_blank">Main Server (Discord)</a>
-                <a href="https://discord.gg/gzWwtWG " class="btn animation hover-scale emerald-text pomegranate-bg black-dropshadow" target="_blank">API Server (Discord)</a>
+                <a href="https://discord.gg/DDRbw7W" class="btn animation hover-scale snapchat-text computerfreaker-bg black-dropshadow" target="_blank">Main Server (Discord)</a>
+                <a href="https://discord.gg/gzWwtWG " class="btn animation hover-scale snapchat-text computerfreaker-bg black-dropshadow" target="_blank">API Server (Discord)</a>
             </section>
         </div>
 
