@@ -16,17 +16,21 @@ A small API that sends anime/hentai images in JSON.
 - Better response times
 
 #### FAQ
- Why do I get an error
+ Why do I get an error?
  - the most likely issue is that you are using the default user-agent
 
- Can i help
+ Can i help?
 - Yes of course just make a PR.
 
- Will it work on my PC
+ Will it work on my PC?
 - I don't recommend using my stuff but only for testing purposes (maybe).
 
-What is the difference between version 1 and version 2
-- The backend of both of the versions are completely different and optimized for different types of workload due to this [v1](https://github.com/CFCorp/CFsAPI) will be depreciated and not accessable anymore in the future when [v2](https://github.com/CFCorp/CFApi2) is fully released
+What is the difference between version 1 and version 2?
+- The backend of both of the versions are completely different and optimized for different types of workload due to this [v1](https://github.com/CFCorp/CFsAPI) will be depreciated and not accessable anymore in the future when [v2](https://github.com/CFCorp/CFApi2) is fully released.
+
+What are you using redis for?
+- it is just a simple caching step between the API requests and the images it just makes loading the images a bit more optimzed and faster due to this if you decide to run it on your own machine Redis is highly recommended to be used.
+
 
 # Requirements:
 - Web server (Apache/Nginx, PHP, PostgreSQL)
@@ -42,8 +46,5 @@ Download & install composer and after that run this in the project directory
 `composer install --optimize-autoloader`.
 
 
-##### Setup doctrine (database)
-Check the parameters in `parameters.yml` and run `php bin/console doctrine:schema:validate` to see if the connections work
-if everything works except for the sync error run this to sync it `php bin/console doctrine:schema:update --force`.
-
-Windows users use ` \ instead of /`
+##### Setup database
+Change the correct variables in your own `.env` file and then run the migration command with `php` that is built-in to this `php artisan migrate:fresh`
