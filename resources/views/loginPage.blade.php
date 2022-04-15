@@ -45,7 +45,7 @@
     <!-- Custom styles for this template -->
     <link href="{{ asset('css/signin.css') }}" rel="stylesheet">
   </head>
-  <body class="text-center">
+  <body class="text-center d-flex align-items-center justify-content-center">
     
 <main class="login-form">
   <form method="POST" action="{{ route('login.custom') }}">

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>CFs API</title>
+    <title>CF's API</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
 
@@ -9,10 +9,10 @@
     <meta name="theme-color" content="#6600cc">
     <meta content="{{ asset('profile/profile.png') }}" property="og:image" />
     <link rel="icon" type="image/x-icon" href="{{ asset('profile/profile.png') }}">
-    <meta content="CFs API" property="og:title" />
+    <meta content="CF's API" property="og:title" />
 
-    <meta content="CFs API" property="og:description" />
-    <meta content="CFs API" name="description" />
+    <meta content="CF's API" property="og:description" />
+    <meta content="CF's API" name="description" />
 
     <meta name="revisit-after" content="2 days">
     <meta name="keywords" content="computerfreaker, API, CFsAPI, Discord">
