@@ -38,41 +38,45 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/v2/anime', function (Request $request) {
-    return image('anime');
-})->name('anime');
+Route::prefix('v2')->group(function (){
+    Route::get('anime', function (Request $request) {
+        return image('anime');
+    })->name('anime');
+    
+    Route::get('baguette', function (Request $request) {
+        return image('baguette');
+    })->name('baguette');
+    
+    Route::get('dva', function (Request $request) {
+        return image('dva');
+    })->name('dva');
+    
+    Route::get('hentai', function (Request $request) {
+        return image('hentai');
+    })->name('hentai');
+    
+    Route::get('hug', function (Request $request) {
+        return image('hug');
+    })->name('hug');
+    
+    Route::get('neko', function (Request $request) {
+        return image('neko');
+    })->name('neko');
+    
+    Route::get('nsfwneko', function (Request $request) {
+        return image('nsfwneko');
+    })->name('nsfwneko');
+    
+    Route::get('trap', function (Request $request) {
+        return image('trap');
+    })->name('trap');
+    
+    Route::get('yuri', function (Request $request) {
+        return image('yuri');
+    })->name('yuri');
+    
+});
 
-Route::get('/v2/baguette', function (Request $request) {
-    return image('baguette');
-})->name('baguette');
-
-Route::get('/v2/dva', function (Request $request) {
-    return image('dva');
-})->name('dva');
-
-Route::get('/v2/hentai', function (Request $request) {
-    return image('hentai');
-})->name('hentai');
-
-Route::get('/v2/hug', function (Request $request) {
-    return image('hug');
-})->name('hug');
-
-Route::get('/v2/neko', function (Request $request) {
-    return image('neko');
-})->name('neko');
-
-Route::get('/v2/nsfwneko', function (Request $request) {
-    return image('nsfwneko');
-})->name('nsfwneko');
-
-Route::get('/v2/trap', function (Request $request) {
-    return image('trap');
-})->name('trap');
-
-Route::get('/v2/yuri', function (Request $request) {
-    return image('yuri');
-})->name('yuri');
 
 
 Route::get('login', [CustomAuthController::class, 'login'])->name('login');
