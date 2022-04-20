@@ -30,7 +30,6 @@
     <link href="{{ asset('css/colours.css') }}" type="text/css" rel="stylesheet">
     <link href="{{ asset('css/markdown.css') }}" type="text/css" rel="stylesheet">
     <link href="{{ asset('css/twemoji.css') }}" type="text/css" rel="stylesheet">
-
 </head>
 <body class="github-font-standard dark-theme">
 <div class="fullscreen">
