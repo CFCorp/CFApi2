@@ -48,3 +48,14 @@ Download & install composer and after that run this in the project directory
 
 ##### Setup database
 Change the correct variables in your own `.env` file and then run the migration command with `php` that is built-in to this `php artisan migrate:fresh`
+
+# Roadmap / todo list:
+- Create a dashboard with all of the statistics and a token generator
+- Make the token generator
+- Make requests only accessible with a token / web login
+- Caching with Redis
+- Simple file uploader
+- 2FA for login
+- Remove registration page that is used for debugging
+- on dashboard make a page where you can reset your password / set new email
+- get the SMTP mailer to work
