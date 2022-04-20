@@ -14,7 +14,7 @@ class DashboardController extends Controller
         $time = getdate();
         $hashed = $username->name . $username->password . $time[0] . microtime(false) . $time['weekday'];
 
-        return sha512($hashed . microtime(false));
+        return hash('sha512', $hashed . microtime(false));
     }
 
     public function getUserToken()
