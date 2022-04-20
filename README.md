@@ -56,4 +56,3 @@ Change the correct variables in your own `.env` file and then run the migration 
 - Remove registration page that is used for debugging
 - on dashboard make a page where you can reset your password / set new email
 - get the SMTP mailer to work
-- Salting passwords (if not already done by default)
