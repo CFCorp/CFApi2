@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>CF's API</title>
+    <title>Dashboard</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
 
@@ -11,8 +11,8 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('profile/profile.png') }}">
     <meta content="dashboard" property="og:title" />
 
-    <meta content="CF's API" property="og:description" />
-    <meta content="CF's API" name="description" />
+    <meta content="Dashboard" property="og:description" />
+    <meta content="Dashboard" name="description" />
 
     <meta name="revisit-after" content="2 days">
     <meta name="keywords" content="computerfreaker, API, CFsAPI, Discord">
@@ -35,6 +35,60 @@
 <body class="github-font-standard dark-theme">
 <div class="fullscreen">
     <div class="background" style="background-image: url('{{ asset('Image/background.jpg') }}');"></div>
+        <div class="center-object">
+            <div class="box-container">
+                <div class="table-container">
+                <h3 class="title emerald-text"><i class="emoji blobcatbusiness"></i> Stats: </h3>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Endpoint Name</th>
+                        <th>Amount of Images</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="emerald-text">Anime</span></td>
+                            <td class="numeric gold-text bold">{{ $anime }}</td>
+                        </tr>
+                        <tr>
+                            <td><span class="emerald-text">Hentai</span></td>
+                            <td class="numeric gold-text bold">{{ $hentai }}</td>
+                        </tr>
+                        <tr>
+                            <td><span class="emerald-text">D.VA</span></td>
+                            <td class="numeric gold-text bold">{{ $dva }}</td>
+                        </tr>
+                        <tr>
+                            <td><span class="emerald-text">Trap</span></td>
+                            <td class="numeric gold-text bold">{{ $trap }}</td>
+                        </tr>
+                        <tr>
+                            <td><span class="emerald-text">Hug</span></td>
+                            <td class="numeric gold-text bold">{{ $hug }}</td>
+                        </tr>
+                        <tr>
+                            <td><span class="emerald-text">baguette</span></td>
+                            <td class="numeric gold-text bold">{{ $baguette }}</td>
+                        </tr>
+                        <tr>
+                            <td><span class="emerald-text">Yuri</span></td>
+                            <td class="numeric gold-text bold">{{ $yuri }}</td>
+                        </tr>
+                        <tr>
+                            <td><span class="emerald-text">Neko</span></td>
+                            <td class="numeric gold-text bold">{{ $neko }}</td>
+                        </tr>
+                        <tr>
+                            <td><span class="emerald-text">NSFW Neko</span></td>
+                            <td class="numeric gold-text bold">{{ $nsfwneko }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>   
+        </div>
+    </div>
 </div>
 </body>
 </html>

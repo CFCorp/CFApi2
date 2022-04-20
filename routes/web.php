@@ -23,6 +23,12 @@ function image($name) {
     ]);
 }
 
+function getCount($name){
+    $count = DB::scalar("SELECT count(*) as cnt FROM $name");
+
+    return $count;
+}
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -85,7 +91,15 @@ Route::get('registration', [CustomAuthController::class, 'registration'])->name(
 Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom'); 
 Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
 Route::get('dashboard', function () {
-    return view('dashboard');
+    $names = array("anime", "baguette", "dva", "hentai", "hug", "trap", "neko", "nsfwneko", "yuri");
+
+    foreach ($names as $key => $name){
+        $data[] = getCount($name);
+    }
+
+    $combi = array_combine($names, $data);
+
+    return view('dashboard')->with($combi);
 })->name('dashboard');
 Route::get('settings', function () {
     return view('settings');
