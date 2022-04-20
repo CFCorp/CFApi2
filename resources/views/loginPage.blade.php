@@ -49,6 +49,7 @@
     
 <main class="login-form">
   <form method="POST" action="{{ route('login.custom') }}">
+    @csrf
     <img class="mb-4" src="{{ asset('profile/profile.png') }}" alt="" width="100" height="100">
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
