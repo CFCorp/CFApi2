@@ -38,13 +38,10 @@ What are you using redis for?
 
 ### How to setup for dummy's
 #### Recommended is Linux
-With phpstorm (with php in path (or add it in your path)):
-    setup composer (be sure it downloads composer.phar)
-    and run this command in a terminal in the project directory `php composer.phar install`.
-
 Download & install composer and after that run this in the project directory
 `composer install --optimize-autoloader`.
 
+Change stuff in the `.env` to make it be able to connect to the database and set the right logging level
 
 ##### Setup database
 Change the correct variables in your own `.env` file and then run the migration command with `php` that is built-in to this `php artisan migrate:fresh`
