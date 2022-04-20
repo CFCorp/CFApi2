@@ -16,6 +16,13 @@ function getData($name){
     
 };
 
+function image($name) {
+    return response()->json(['url' => getData($name)])->withHeaders([
+        'Access-Control-Allow-Origin' => '*',
+        'Cache-Control' => 'no-cache',
+    ]);
+}
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,66 +39,39 @@ Route::get('/', function () {
 });
 
 Route::get('/v2/anime', function (Request $request) {
-    return response()->json(['url' => getData('anime')])->withHeaders([
-        'Access-Control-Allow-Origin' => '*',
-        'Cache-Control' => 'no-cache',
-    ]);
+    return image('anime');
 })->name('anime');
 
 Route::get('/v2/baguette', function (Request $request) {
-    return response()->json(['url' => getData('baguette')])->withHeaders([
-        'Access-Control-Allow-Origin' => '*',
-        'Cache-Control' => 'no-cache',
-    ]);
+    return image('baguette');
 })->name('baguette');
 
 Route::get('/v2/dva', function (Request $request) {
-    return response()->json(['url' => getData('dva')])->withHeaders([
-        'Access-Control-Allow-Origin' => '*',
-        'Cache-Control' => 'no-cache',
-    ]);
+    return image('dva');
 })->name('dva');
 
 Route::get('/v2/hentai', function (Request $request) {
-    return response()->json(['url' => getData('hentai')])->withHeaders([
-        'Access-Control-Allow-Origin' => '*',
-        'Cache-Control' => 'no-cache',
-    ]);
+    return image('hentai');
 })->name('hentai');
 
 Route::get('/v2/hug', function (Request $request) {
-    return response()->json(['url' => getData('hug')])->withHeaders([
-        'Access-Control-Allow-Origin' => '*',
-        'Cache-Control' => 'no-cache',
-    ]);
+    return image('hug');
 })->name('hug');
 
 Route::get('/v2/neko', function (Request $request) {
-    return response()->json(['url' => getData('neko')])->withHeaders([
-        'Access-Control-Allow-Origin' => '*',
-        'Cache-Control' => 'no-cache',
-    ]);
+    return image('neko');
 })->name('neko');
 
 Route::get('/v2/nsfwneko', function (Request $request) {
-    return response()->json(['url' => getData('nsfwneko')])->withHeaders([
-        'Access-Control-Allow-Origin' => '*',
-        'Cache-Control' => 'no-cache',
-    ]);
+    return image('nsfwneko');
 })->name('nsfwneko');
 
 Route::get('/v2/trap', function (Request $request) {
-    return response()->json(['url' => getData('trap')])->withHeaders([
-        'Access-Control-Allow-Origin' => '*',
-        'Cache-Control' => 'no-cache',
-    ]);
+    return image('trap');
 })->name('trap');
 
 Route::get('/v2/yuri', function (Request $request) {
-    return response()->json(['url' => getData('yuri')])->withHeaders([
-        'Access-Control-Allow-Origin' => '*',
-        'Cache-Control' => 'no-cache',
-    ]);
+    return image('yuri');
 })->name('yuri');
 
 
