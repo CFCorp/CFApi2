@@ -32,7 +32,7 @@
     <link href="{{ asset('css/twemoji.css') }}" type="text/css" rel="stylesheet">
 
 </head>
-<body class="github-font-standard" class="dark-primary">
+<body class="github-font-standard dark-theme">
 <div class="fullscreen">
     <div class="background" style="background-image: url('{{ asset('Image/background.jpg') }}');"></div>
     <div class="center-object">
@@ -61,11 +61,31 @@
             </section>
             <section class="buttons">
                 <a href="https://discord.gg/DDRbw7W" class="btn animation hover-scale snapchat-text computerfreaker-bg black-dropshadow" target="_blank">Main Server (Discord)</a>
-                <a href="https://discord.gg/gzWwtWG " class="btn animation hover-scale snapchat-text computerfreaker-bg black-dropshadow" target="_blank">API Server (Discord)</a>
+                <a href="https://discord.gg/gzWwtWG" class="btn animation hover-scale snapchat-text computerfreaker-bg black-dropshadow" target="_blank">API Server (Discord)</a>
             </section>
-        </div>
-
     </div>
+    <a href="#login"><div class="arrow bounce">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 481.32 291.98" class="wisteria-fill">
+                <path d="M466.5,15.5L466,15c-19.8-19.8-52-19.8-71.9,0L240.8,168.3L87.2,14.8C67.4-5,35.2-5,15.4,14.8l-0.5,0.5 C-5,35.2-5,67.4,14.8,87.2l186.6,186.6c0.9,1,1.8,2,2.7,3v0c3.8,3.8,8.1,6.9,12.7,9.3c17,9,38.1,7.7,53.9-3.9 c2.2-1.6,4.4-3.4,6.4-5.4L466.5,87.4C486.4,67.6,486.4,35.4,466.5,15.5z"/>
+            </svg>
+        </div></a>
 </div>
+<section class="container" id="login">
+    <section class="box-container">
+        <section class="table-container">
+        @guest
+        <section class="buttons">
+        <a href="{{ route('login') }}" class="btn animation hover-scale snapchat-text computerfreaker-bg black-dropshadow" target="">login</a>
+        </section>
+        @endguest
+        @auth
+        <section class="buttons">
+        <h3 class="computerfreaker-text">Welcome {{ Auth::user()->name }}, if you want to logout click here: </h3><a href="{{ route('signout') }}" class="btn animation hover-scale snapchat-text computerfreaker-bg black-dropshadow" target="">logout</a>
+        </section>
+        @endauth
+        
+        </section>
+    </section>
+</section>
 </body>
 </html>

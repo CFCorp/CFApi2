@@ -95,8 +95,11 @@ Route::get('/v2/yuri', function (Request $request) {
 })->name('yuri');
 
 
-Route::get('login', [CustomAuthController::class, 'index'])->name('login');
+Route::get('login', [CustomAuthController::class, 'login'])->name('login');
 Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom'); 
 Route::get('registration', [CustomAuthController::class, 'registration'])->name('register-user');
 Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom'); 
 Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
+Route::get('dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
