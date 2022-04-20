@@ -9,7 +9,7 @@
     <meta name="theme-color" content="#6600cc">
     <meta content="{{ asset('profile/profile.png') }}" property="og:image" />
     <link rel="icon" type="image/x-icon" href="{{ asset('profile/profile.png') }}">
-    <meta content="CF's API" property="og:title" />
+    <meta content="dashboard" property="og:title" />
 
     <meta content="CF's API" property="og:description" />
     <meta content="CF's API" name="description" />
@@ -35,6 +35,6 @@
 <body class="github-font-standard dark-theme">
 <div class="fullscreen">
     <div class="background" style="background-image: url('{{ asset('Image/background.jpg') }}');"></div>
-    
+
 </body>
 </html>
