@@ -103,10 +103,7 @@
                 <input type="submit" class="btn animation hover-scale snapchat-text computerfreaker-bg black-dropshadow" value="Generate">
             </form>
             <button class="btn animation hover-scale snapchat-text computerfreaker-bg black-dropshadow" onclick="CopyToClipboard('textToCopy');return false;">Copy</button>
-            <h3 class="computerfreaker-text">Current Token:  </h3><h3 class="computerfreaker-text" id="textToCopy">
-                @foreach ($token as $t)
-                    {{ $t->token }}
-                @endforeach   </h3>
+            <h3 class="computerfreaker-text">Current Token:  </h3><h3 class="computerfreaker-text" id="textToCopy">@foreach ($token as $t){{$t->token}}@endforeach</h3>
         </div>
     </div>
 </div>
