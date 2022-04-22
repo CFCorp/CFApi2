@@ -12,7 +12,7 @@ class DashboardController extends Controller
     {
         $new_token = $this->tokenGen();
 
-        DB::transaction(function()
+        DB::transaction(function($new_token)
         {
             DB::update("update users set token='" . $this->dbQuote($new_token) . "' where name='" . $this->dbQuote(Auth::user()) . "';");
         }, 5);
@@ -32,7 +32,7 @@ class DashboardController extends Controller
 
     private function getCurrentUser()
     {
-        return DB::table('users')->where('name', Auth::user())->first();
+        return DB::table('users')->where('id', Auth::user()->getAuthIdentifier())->first();
     }
 
     private function dbQuote($string)
