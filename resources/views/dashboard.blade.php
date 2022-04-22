@@ -68,7 +68,7 @@
                             <td class="numeric gold-text bold">{{ $hug }}</td>
                         </tr>
                         <tr>
-                            <td><span class="emerald-text">baguette</span></td>
+                            <td><span class="emerald-text">Baguette</span></td>
                             <td class="numeric gold-text bold">{{ $baguette }}</td>
                         </tr>
                         <tr>
@@ -86,7 +86,8 @@
                     </tbody>
                 </table>
                 </div>
-            </div>   
+            </div>
+            <button onclick="{{ Illuminate\Support\Js::from(updateUserToken()) }}" type="button" class="btn animation hover-scale snapchat-text computerfreaker-bg black-dropshadow">Regenerate Token</button>
         </div>
     </div>
 </div>

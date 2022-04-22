@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\CustomAuthController;
+use App\Http\Controllers\DashboardController;
 
 
 function getData($name){
@@ -101,6 +102,7 @@ Route::get('dashboard', function () {
 
     return view('dashboard')->with($combi);
 })->name('dashboard');
+Route::get('dashboard', [DashboardController::class, 'updateUserToken'])->name('updateUserToken');
 Route::get('settings', function () {
     return view('settings');
 })->name('settings');

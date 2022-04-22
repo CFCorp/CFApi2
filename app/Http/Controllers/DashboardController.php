@@ -7,9 +7,22 @@ use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
-    public function tokenGen()
+
+    public function updateUserToken()
     {
-        $username = DB::table('users')-where('name', Auth::user())->first();
+        $new_token = $this->tokenGen();
+
+        DB::transaction(function()
+        {
+            DB::update("update users set token='" . $this->dbQuote($new_token) . "' where name='" . $this->dbQuote(Auth::user()) . "';");
+        }, 5);
+
+        return $new_token;
+    }
+
+    private function tokenGen()
+    {
+        $username = $this->getCurrentUser();
 
         $time = getdate();
         $hashed = $username->name . $username->password . $time[0] . microtime(false) . $time['weekday'];
@@ -17,10 +30,13 @@ class DashboardController extends Controller
         return hash('sha512', $hashed . microtime(false));
     }
 
-    public function getUserToken()
+    private function getCurrentUser()
     {
-        $username = DB::table('users')-where('name', Auth::user())->first();
+        return DB::table('users')->where('name', Auth::user())->first();
+    }
 
-        return $username->token;
+    private function dbQuote($string)
+    {
+        return DB::connection()->getPdo()->quote($string);
     }
 }
