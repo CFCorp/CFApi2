@@ -30,6 +30,17 @@
     <link href="{{ asset('css/colours.css') }}" type="text/css" rel="stylesheet">
     <link href="{{ asset('css/markdown.css') }}" type="text/css" rel="stylesheet">
     <link href="{{ asset('css/twemoji.css') }}" type="text/css" rel="stylesheet">
+    <script>
+        function CopyToClipboard(id){
+            var r = document.createRange();
+            r.selectNode(document.getElementById(id));
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(r);
+            document.execCommand('copy');
+            window.getSelection().removeAllRanges();
+        }
+    </script>
+    
 
 </head>
 <body class="github-font-standard dark-theme">
@@ -87,7 +98,15 @@
                 </table>
                 </div>
             </div>
-            <button type="button" class="btn animation hover-scale snapchat-text computerfreaker-bg black-dropshadow">Regenerate Token</button>
+            <form method="post" action="{{ route('dashboard.generate') }}">
+            @csrf
+                <input type="submit" class="btn animation hover-scale snapchat-text computerfreaker-bg black-dropshadow" value="Generate">
+            </form>
+            <button class="btn animation hover-scale snapchat-text computerfreaker-bg black-dropshadow" onclick="CopyToClipboard('textToCopy');return false;">Copy</button>
+            <h3 class="computerfreaker-text">Current Token:  </h3><h3 class="computerfreaker-text" id="textToCopy">
+                @foreach ($token as $t)
+                    {{ $t->token }}
+                @endforeach   </h3>
         </div>
     </div>
 </div>

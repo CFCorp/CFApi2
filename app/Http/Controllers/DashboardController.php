@@ -13,9 +13,9 @@ class DashboardController extends Controller
         $new_token = $this->tokenGen();
         $user = $this->getCurrentUser();
 
-        DB::update("update users set remember_token=" . $this->dbQuote($new_token) . " where id=" . $this->dbQuote($user->id) . ";");
+        DB::update("update users set token=" . $this->dbQuote($new_token) . " where id=" . $this->dbQuote($user->id) . ";");
 
-        return $new_token;
+        return redirect("dashboard")->withSuccess('token has been created');
     }
 
     private function tokenGen()
@@ -36,5 +36,9 @@ class DashboardController extends Controller
     private function dbQuote($string)
     {
         return DB::connection()->getPdo()->quote($string);
+    }
+
+    public function getUserToken(){
+        return DB::table('users')->select('token')->where('id', Auth::user()->getAuthIdentifier())->get();
     }
 }

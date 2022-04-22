@@ -97,12 +97,14 @@ Route::get('dashboard', function () {
     foreach ($names as $key => $name){
         $data[] = getCount($name);
     }
+    $token = array('token' => (new DashboardController)->getUserToken());
+    $combination = array_combine($names, $data);
+    $combi = array_merge($combination, $token);
 
-    $combi = array_combine($names, $data);
 
     return view('dashboard')->with($combi);
 })->name('dashboard');
-//Route::get('dashboard', [DashboardController::class, 'updateUserToken'])->name('updateUserToken');
+Route::post('dashboard-generate', [DashboardController::class, 'updateUserToken'])->name('dashboard.generate');
 Route::get('settings', function () {
     return view('settings');
 })->name('settings');
