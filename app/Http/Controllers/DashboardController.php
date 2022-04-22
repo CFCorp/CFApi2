@@ -11,11 +11,9 @@ class DashboardController extends Controller
     public function updateUserToken()
     {
         $new_token = $this->tokenGen();
+        $user = $this->getCurrentUser();
 
-        DB::transaction(function($new_token)
-        {
-            DB::update("update users set token='" . $this->dbQuote($new_token) . "' where name='" . $this->dbQuote(Auth::user()) . "';");
-        }, 5);
+        DB::update("update users set remember_token=" . $this->dbQuote($new_token) . " where id=" . $this->dbQuote($user->id) . ";");
 
         return $new_token;
     }

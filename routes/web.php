@@ -102,7 +102,7 @@ Route::get('dashboard', function () {
 
     return view('dashboard')->with($combi);
 })->name('dashboard');
-Route::get('dashboard', [DashboardController::class, 'updateUserToken'])->name('updateUserToken');
+//Route::get('dashboard', [DashboardController::class, 'updateUserToken'])->name('updateUserToken');
 Route::get('settings', function () {
     return view('settings');
 })->name('settings');

@@ -87,7 +87,7 @@
                 </table>
                 </div>
             </div>
-            <button onclick="{{ Illuminate\Support\Js::from(updateUserToken()) }}" type="button" class="btn animation hover-scale snapchat-text computerfreaker-bg black-dropshadow">Regenerate Token</button>
+            <button type="button" class="btn animation hover-scale snapchat-text computerfreaker-bg black-dropshadow">Regenerate Token</button>
         </div>
     </div>
 </div>
