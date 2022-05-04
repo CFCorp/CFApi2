@@ -24,11 +24,7 @@ function image($name) {
     ]);
 }
 
-function getCount($name){
-    $count = DB::scalar("SELECT count(*) as cnt FROM $name");
 
-    return $count;
-}
 
 /*
 |--------------------------------------------------------------------------
@@ -91,19 +87,7 @@ Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name(
 Route::get('registration', [CustomAuthController::class, 'registration'])->name('register-user');
 Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom'); 
 Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
-Route::get('dashboard', function () {
-    $names = array("anime", "baguette", "dva", "hentai", "hug", "trap", "neko", "nsfwneko", "yuri");
-
-    foreach ($names as $key => $name){
-        $data[] = getCount($name);
-    }
-    $token = array('token' => (new DashboardController)->getUserToken());
-    $combination = array_combine($names, $data);
-    $combi = array_merge($combination, $token);
-
-
-    return view('dashboard')->with($combi);
-})->name('dashboard');
+Route::get('dashboard', [CustomAuthController::class, 'dashboard'])->name('dashboard');
 Route::post('dashboard-generate', [DashboardController::class, 'updateUserToken'])->name('dashboard.generate');
 Route::get('settings', function () {
     return view('settings');
