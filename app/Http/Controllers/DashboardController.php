@@ -22,7 +22,6 @@ class DashboardController extends Controller
             return redirect("signout");
         }
 
-        
     }
 
     private function tokenGen()
@@ -45,7 +44,7 @@ class DashboardController extends Controller
         if ($user == null) {
             return " ";
         }
-        $token = DB::scalar("SELECT token FROM users WHERE id=" . $this->dbQuote($user->getAuthIdentifier()) . ";");
+        $token = DB::table('users')->select('token')->where('id', $user->getAuthIdentifier())->value("token");
         if ($token == null) {
             return " ";
         }
