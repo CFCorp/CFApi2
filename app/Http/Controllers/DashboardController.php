@@ -39,6 +39,14 @@ class DashboardController extends Controller
     }
 
     public function getUserToken(){
-        return DB::table('users')->select('token')->where('id', Auth::user()->getAuthIdentifier())->get();
+        $user = Auth::user();
+        if ($user == null) {
+            return " ";
+        }
+        $token = DB::scalar("SELECT token FROM users WHERE id=" . $this->dbQuote($user->getAuthIdentifier()) . ";");
+        if ($token == null) {
+            return " ";
+        }
+        return $token;
     }
 }
