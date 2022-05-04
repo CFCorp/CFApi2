@@ -10,27 +10,29 @@ class DashboardController extends Controller
 
     public function updateUserToken()
     {
-        $new_token = $this->tokenGen();
-        $user = $this->getCurrentUser();
+        if(Auth::check()){
+            $new_token = $this->tokenGen();
+            $user = Auth::user();
 
-        DB::update("update users set token=" . $this->dbQuote($new_token) . " where id=" . $this->dbQuote($user->id) . ";");
+            DB::update("update users set token=" . $this->dbQuote($new_token) . " where id=" . $this->dbQuote($user->id) . ";");
 
-        return redirect("dashboard")->withSuccess('token has been created');
+            return redirect("dashboard")->withSuccess('token has been created');
+        }
+        else {
+            return redirect("signout");
+        }
+
+        
     }
 
     private function tokenGen()
     {
-        $username = $this->getCurrentUser();
+        $username = Auth::user();
 
         $time = getdate();
         $hashed = $username->name . $username->password . $time[0] . microtime(false) . $time['weekday'];
 
         return hash('sha512', $hashed . microtime(false));
-    }
-
-    private function getCurrentUser()
-    {
-        return DB::table('users')->where('id', Auth::user()->getAuthIdentifier())->first();
     }
 
     private function dbQuote($string)
