@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\DashboardController;
 
@@ -18,10 +19,32 @@ function getData($name){
 };
 
 function image($name) {
-    return response()->json(['url' => getData($name)])->withHeaders([
-        'Access-Control-Allow-Origin' => '*',
-        'Cache-Control' => 'no-cache',
-    ]);
+    if (Auth::check()) {
+        $user = Auth::user();
+        if ($user != null) {
+            $token = DB::table('users')->select('token')->where('id', $user->getAuthIdentifier())->value("token");
+            if ($token != null && trim($token) !== '') {
+                return response()->json(['url' => getData($name)])->withHeaders([
+                    'Access-Control-Allow-Origin' => '*',
+                    'Cache-Control' => 'no-cache',
+                ]);
+            }
+        }
+    }
+    return abort(403);
+}
+
+function apiImage($name, $token) {
+    if ($token != null && trim($token) !== '') {
+        $stored_token = DB::table('users')->select('token')->where('token', $token)->value("token");
+        if ($stored_token != null && trim($stored_token) !== '') {
+            return response()->json(['url' => getData($name)])->withHeaders([
+                'Access-Control-Allow-Origin' => '*',
+                'Cache-Control' => 'no-cache',
+            ]);
+        }
+    }
+    return abort(403);
 }
 
 

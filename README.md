@@ -48,7 +48,6 @@ Change the correct variables in your own `.env` file and then run the migration 
 
 # Roadmap / todo list:
 - Create a dashboard with all of the statistics and a token generator
-- Make the token generator
 - Make requests only accessible with a token / web login
 - Caching with Redis
 - Simple file uploader
