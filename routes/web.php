@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SettingsController;
 
 
 function getData($name){
@@ -112,6 +113,5 @@ Route::post('custom-registration', [CustomAuthController::class, 'customRegistra
 Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
 Route::get('dashboard', [CustomAuthController::class, 'dashboard'])->name('dashboard');
 Route::post('dashboard-generate', [DashboardController::class, 'updateUserToken'])->name('dashboard.generate');
-Route::get('settings', function () {
-    return view('settings');
-})->name('settings');
+Route::get('settings', [CustomAuthController::class, 'settings'])->name('settings');
+//Route::get('settings/{current_password}/{new_password}/{confirmed_password}', [SettingsController::class, 'changeUserPassword'])->name('settings.password');

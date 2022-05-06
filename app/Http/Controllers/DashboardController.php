@@ -10,7 +10,7 @@ class DashboardController extends Controller
 
     public function updateUserToken()
     {
-        if(Auth::check()){
+        if(Auth::check()) {
             $new_token = $this->tokenGen();
             $user = Auth::user();
 
@@ -39,7 +39,8 @@ class DashboardController extends Controller
         return DB::connection()->getPdo()->quote($string);
     }
 
-    public function getUserToken(){
+    public function getUserToken()
+    {
         $user = Auth::user();
         if ($user == null) {
             return " ";

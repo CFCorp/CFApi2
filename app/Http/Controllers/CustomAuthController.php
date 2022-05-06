@@ -93,6 +93,17 @@ class CustomAuthController extends Controller
    
         
     }
+
+
+    public function settings()
+    {
+        if(Auth::check()){
+            return view('settings');
+        }
+        else {
+            return redirect("login")->withSuccess('are not allowed to access');
+        }
+    }
      
  
     public function signOut() {

@@ -34,6 +34,29 @@
 <body class="github-font-standard dark-theme">
 <div class="fullscreen">
     <div class="background" style="background-image: url('{{ asset('Image/background.jpg') }}');"></div>
+    @csrf
+    <div class="center-object">
+        <form method="post">
+            <h3 class="emerald-text">Change Your Password</h3>
+            <div class="flex-grid">
+                <div class="box-container text-left">
+                    Current Password:
+                    <br><br><br>
+                    New Password:
+                    <br><br><br>
+                    Confirm Password:
+                </div>
+                <div class="box-container text-right">
+                    <input type="password" name="current" id="current"/>
+                    <br><br>
+                    <input type="password" name="new" id="new"/>
+                    <br><br>
+                    <input type="password" name="confirmed" id="confirmed"/>
+                </div>
+            </div>
+            <input type="submit" class="btn animation hover-scale snapchat-text computerfreaker-bg black-dropshadow" value="Change Password">
+        </form>
+    </div>
 </div>
 </body>
 </html>
