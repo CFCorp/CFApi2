@@ -12,6 +12,20 @@ use Illuminate\Support\Facades\Auth;
 class SettingsController extends Controller
 {
 
+    private function getUserEmail()
+    {
+        if(Auth::check()) {
+            $user = Auth::user();
+            if ($user != null) {
+                $email = DB::table('users')->select('email')->where('id', $user->getAuthIdentifier())->value("email");
+                if ($email != null && trim($email) !== '') {
+                    return $email;
+                }
+            }
+        }
+        return '';
+    }
+
     private function getUserPassword() 
     {
         if(Auth::check()) {
@@ -24,6 +38,18 @@ class SettingsController extends Controller
             }
         }
         return '';
+    }
+
+    public function changeUserEmail($new_email)
+    {
+        if(Auth::check()) {
+            $user = Auth::user();
+            if ($user != null) {
+                DB::update("update users set email=" . $this->dbQuote($new_email) . " where id=" . $this->dbQuote($user->id) . ";");
+                return true;
+            }
+        }
+        return false;
     }
 
     public function changeUserPassword($current_password, $new_password, $confirmed_password)
