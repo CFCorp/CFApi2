@@ -37,6 +37,20 @@
     @csrf
     <div class="center-object">
         <form method="post">
+            <h3 class="emerald-text">Change Your Email</h3>
+            <div class="flex-grid">
+                <div class="box-container text-left">
+                    New Email:
+                </div>
+                <div class="box-container text-right">
+                    <input type="password" name="new_email"/>
+                </div>
+            </div>
+            <input type="submit" class="btn animation hover-scale snapchat-text computerfreaker-bg black-dropshadow" value="Change Email">
+        </form>
+    </div>
+    <div class="center-object">
+        <form method="post">
             <h3 class="emerald-text">Change Your Password</h3>
             <div class="flex-grid">
                 <div class="box-container text-left">
@@ -47,11 +61,11 @@
                     Confirm Password:
                 </div>
                 <div class="box-container text-right">
-                    <input type="password" name="current" id="current"/>
+                    <input type="password" name="current_pass"/>
                     <br><br>
-                    <input type="password" name="new" id="new"/>
+                    <input type="password" name="new_pass"/>
                     <br><br>
-                    <input type="password" name="confirmed" id="confirmed"/>
+                    <input type="password" name="confirmed_pass"/>
                 </div>
             </div>
             <input type="submit" class="btn animation hover-scale snapchat-text computerfreaker-bg black-dropshadow" value="Change Password">
