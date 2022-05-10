@@ -115,3 +115,7 @@ Route::get('dashboard', [CustomAuthController::class, 'dashboard'])->name('dashb
 Route::post('dashboard-generate', [DashboardController::class, 'updateUserToken'])->name('dashboard.generate');
 Route::get('settings', [CustomAuthController::class, 'settings'])->name('settings');
 //Route::get('settings/{current_password}/{new_password}/{confirmed_password}', [SettingsController::class, 'changeUserPassword'])->name('settings.password');
+Route::get('forget-password', [SettingsController::class, 'getEmail']);
+Route::post('forget-password', [SettingsController::class, 'postEmail']);
+Route::get('reset-password/{token}', [SettingsController::class, 'getPassword']);
+Route::post('reset-password', [SettingsController::class, 'updatePassword']);

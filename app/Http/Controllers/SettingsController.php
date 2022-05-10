@@ -5,67 +5,69 @@ namespace App\Http\Controllers;
 use Hash;
 
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User; 
+use Illuminate\Support\Facades\Mail;
+use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 class SettingsController extends Controller
 {
-
-    private function getUserEmail()
+    public function getEmail()
     {
-        if(Auth::check()) {
-            $user = Auth::user();
-            if ($user != null) {
-                $email = DB::table('users')->select('email')->where('id', $user->getAuthIdentifier())->value("email");
-                if ($email != null && trim($email) !== '') {
-                    return $email;
-                }
-            }
-        }
-        return '';
+       return view('auth.password.email');
     }
 
-    private function getUserPassword() 
+    public function postEmail(Request $request)
     {
-        if(Auth::check()) {
-            $user = Auth::user();
-            if ($user != null) {
-                $password = DB::table('users')->select('password')->where('id', $user->getAuthIdentifier())->value("password");
-                if ($password != null && trim($password) !== '') {
-                    return $password;
-                }
-            }
-        }
-        return '';
+        $request->validate([
+            'email' => 'required|email|exists:users',
+        ]);
+
+        $token = Str::random(60);
+
+        DB::table('password_resets')->insert(
+            ['email' => $request->email, 'token' => $token, 'created_at' => Carbon::now()]
+        );
+
+        Mail::send('auth.password.verify', ['token' => $token], function($message) use ($request) {
+                  $message->from('no-reply@computerfreaker.pw');
+                  $message->to($request->email);
+                  $message->subject('Reset Password Notification');
+               });
+
+        return back()->with('message', 'We have e-mailed your password reset link!');
     }
 
-    public function changeUserEmail($new_email)
+    public function getPassword($token)
     {
-        if(Auth::check()) {
-            $user = Auth::user();
-            if ($user != null) {
-                DB::update("update users set email=" . $this->dbQuote($new_email) . " where id=" . $this->dbQuote($user->id) . ";");
-                return true;
-            }
-        }
-        return false;
+       return view('auth.password.reset', ['token' => $token]);
     }
 
-    public function changeUserPassword($current_password, $new_password, $confirmed_password)
+    public function updatePassword(Request $request)
     {
-        if(Auth::check()) {
-            $user = Auth::user();
-            if ($user != null) {
-                $password = $this->getUserPassword();
-                if ($password != null && trim($password) !== '' && $password === $current_password && $new_password === $confirmed_password) {
-                    $hashed_password = Hash::make($new_password);
-                    DB::update("update users set password=" . $this->dbQuote($hashed_password) . " where id=" . $this->dbQuote($user->id) . ";");
-                    return true;
-                }
-            }
-        }
-        return false;
+        $request->validate([
+            'email' => 'required|email|exists:users',
+            'password' => 'required|string|min:6|confirmed',
+            'password_confirmation' => 'required',
+
+        ]);
+
+        $updatePassword = DB::table('password_resets')
+                            ->where(['email' => $request->email, 'token' => $request->token])
+                            ->first();
+
+        if(!$updatePassword)
+            return back()->withInput()->with('error', 'Invalid token!');
+
+          $user = User::where('email', $request->email)
+                      ->update(['password' => Hash::make($request->password)]);
+
+          DB::table('password_resets')->where(['email'=> $request->email])->delete();
+
+          return redirect('login')->with('message', 'Your password has been changed!');
+
     }
 
 }

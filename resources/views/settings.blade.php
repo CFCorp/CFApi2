@@ -50,28 +50,6 @@
                 <input type="submit" class="btn animation hover-scale snapchat-text computerfreaker-bg black-dropshadow" value="Change Email">
             </div>
         </form>
-        <form method="post">
-            <h3 class="emerald-text">Change Your Password</h3>
-            <div class="flex-grid">
-                <div class="box-container text-left">
-                    Current Password:
-                    <br><br><br>
-                    New Password:
-                    <br><br><br>
-                    Confirm Password:
-                </div>
-                <div class="box-container text-right">
-                    <input type="password" name="current_pass"/>
-                    <br><br>
-                    <input type="password" name="new_pass"/>
-                    <br><br>
-                    <input type="password" name="confirmed_pass"/>
-                </div>
-            </div>
-            <div class="text-center">
-                <input type="submit" class="btn animation hover-scale snapchat-text computerfreaker-bg black-dropshadow" value="Change Password">
-            </div>
-        </form>
     </div>
 </div>
 </body>
