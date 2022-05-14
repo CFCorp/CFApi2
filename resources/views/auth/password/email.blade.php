@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                   <form method="POST" action="/forget-password">
+                   <form method="POST" action="{{ route('forget.pass') }}">
                         @csrf
                           <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
