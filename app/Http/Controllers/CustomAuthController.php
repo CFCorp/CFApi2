@@ -8,6 +8,7 @@ use Session;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cache;
 
 class CustomAuthController extends Controller
 {
@@ -19,7 +20,11 @@ class CustomAuthController extends Controller
 
     public function login()
     {
-        return view('loginPage');
+        $users = Cache::remember('users', 33600, function () {
+            return DB::table('users')->get();
+        });
+
+        return view('loginPage', compact('users'));
     }  
        
  
@@ -35,7 +40,7 @@ class CustomAuthController extends Controller
             return redirect()->intended('dashboard')
                         ->withSuccess('Signed in');
         }
-   
+        
         return redirect("login")->withSuccess('Login details are not valid');
     }
  
