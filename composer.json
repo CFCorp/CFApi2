@@ -1,7 +1,7 @@
 {
-    "name": "laravel/laravel",
+    "name": "computerfreaker/cfapi2",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "CF API that stuff does stuff",
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
@@ -10,6 +10,7 @@
         "laravel/framework": "^9.2",
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
+        "php-open-source-saver/jwt-auth": "^1.4",
         "predis/predis": "^1.1"
     },
     "require-dev": {
