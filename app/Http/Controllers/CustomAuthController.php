@@ -17,65 +17,6 @@ class CustomAuthController extends Controller
     
         return $count;
     }
-
-    public function login()
-    {
-        $users = Cache::remember('users', 33600, function () {
-            return DB::table('users')->get();
-        });
-
-        return view('loginPage', compact('users'));
-    }  
-       
- 
-    public function customLogin(Request $request)
-    {
-        $request->validate([
-            'email' => 'required',
-            'password' => 'required',
-        ]);
-    
-        $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials)) {
-            return redirect()->intended('dashboard')
-                        ->withSuccess('Signed in');
-        }
-        
-        return redirect("login")->withSuccess('Login details are not valid');
-    }
- 
- 
- 
-    public function registration()
-    {
-        return view('registration');
-    }
-       
- 
-    public function customRegistration(Request $request)
-    {  
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
-        ]);
-            
-        $data = $request->all();
-        $check = $this->create($data);
-        
-        return redirect("login");
-    }
- 
- 
-    public function create(array $data)
-    {
-      return User::create([
-        'name' => $data['name'],
-        'email' => $data['email'],
-        'password' => Hash::make($data['password'])
-      ]);
-    }    
-     
  
     public function dashboard()
     {
@@ -93,7 +34,7 @@ class CustomAuthController extends Controller
     
             return view('dashboard')->with($combi);
         } else{
-            return redirect("login")->withSuccess('are not allowed to access');
+            return redirect("weblogin")->withSuccess('are not allowed to access');
         }
    
         
@@ -106,7 +47,7 @@ class CustomAuthController extends Controller
             return view('settings');
         }
         else {
-            return redirect("login")->withSuccess('are not allowed to access');
+            return redirect("weblogin")->withSuccess('are not allowed to access');
         }
     }
      

@@ -47,17 +47,7 @@
                 </div>
             </section>
             <section class="buttons">
-                <a href="{{ route('anime') }}" class="btn github animation hover-scale snapchat-text computerfreaker-bg black-dropshadow" target="">Anime</a>
-                <a href="{{ route('hentai') }}" class="btn animation hover-scale snapchat-text computerfreaker-bg black-dropshadow" target="">Hentai</a>
-                <a href="{{ route('yuri') }}" class="btn animation hover-scale snapchat-text computerfreaker-bg black-dropshadow" target="">Yuri</a>
-                <a href="{{ route('dva') }}" class="btn animation hover-scale snapchat-text computerfreaker-bg black-dropshadow" target="">D.VA</a>
-                <a href="{{ route('trap') }}" class="btn animation hover-scale snapchat-text computerfreaker-bg black-dropshadow" target="">Trap</a>
-            </section>
-            <section class="buttons">
-                <a href="{{ route('hug') }}" class="btn animation hover-scale snapchat-text computerfreaker-bg black-dropshadow" target="">Hug</a>
-                <a href="{{ route('neko') }}" class="btn animation hover-scale snapchat-text computerfreaker-bg black-dropshadow" target="">Neko</a>
-                <a href="{{ route('nsfwneko') }}" class="btn animation hover-scale snapchat-text computerfreaker-bg black-dropshadow" target="">NSFW Neko</a>
-                <a href="{{ route('baguette') }}" class="btn animation hover-scale snapchat-text computerfreaker-bg black-dropshadow" target="">Baguette</a>
+                <p>To see all current endpoints you have to login</p>
             </section>
             <section class="buttons">
                 <a href="https://discord.gg/DDRbw7W" class="btn animation hover-scale snapchat-text computerfreaker-bg black-dropshadow" target="_blank">Main Server (Discord)</a>
