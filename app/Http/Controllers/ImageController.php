@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class CustomAuthController extends Controller
+class ImageController extends Controller
 {
     public function __construct()
     {
@@ -30,6 +29,4 @@ class CustomAuthController extends Controller
             'Cache-Control' => 'no-cache',
         ]);
     }
-
-
 }
