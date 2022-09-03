@@ -27,8 +27,6 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('logout', 'logout');
     Route::post('refresh', 'refresh');
     Route::get('me', 'me');
-    Route::get('anime', 'anime');
-
 });
 
 Route::controller(ImageController::class)->group(function () {
