@@ -34,7 +34,7 @@ class CustomAuthController extends Controller
     
             return view('dashboard')->with($combi);
         } else{
-            return redirect("weblogin")->withSuccess('are not allowed to access');
+            return redirect("login")->withSuccess('are not allowed to access');
         }
    
         
@@ -47,7 +47,7 @@ class CustomAuthController extends Controller
             return view('settings');
         }
         else {
-            return redirect("weblogin")->withSuccess('are not allowed to access');
+            return redirect("login")->withSuccess('are not allowed to access');
         }
     }
      
