@@ -52,4 +52,3 @@ Change the correct variables in your own `.env` file and then run the migration 
 - Simple file uploader
 - 2FA for login
 - Remove registration page that is used for debugging
-- set new email
