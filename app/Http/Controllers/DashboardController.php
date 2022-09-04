@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
@@ -26,17 +24,14 @@ class DashboardController extends Controller
 
     }
 
-    private function tokenGen(Request $request)
+    private function tokenGen()
     {
         $username = Auth::user();
 
-        $token = Str::random(120);
+        $time = getdate();
+        $hashed = $username->name . $username->password . $time[0] . microtime(false) . $time['weekday'];
 
-        $request->user()-forceFill([
-            'token' => hash('sha512', $token),
-        ])->save();
-
-        return ['token' => $token];
+        return hash('sha512', $hashed . microtime(false));
     }
 
     private function dbQuote($string)
