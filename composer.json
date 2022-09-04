@@ -6,14 +6,16 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
-        "guzzlehttp/guzzle": "^7.2",
+        "guzzlehttp/guzzle": "^7.5",
         "innocenzi/laravel-vite": "0.2.1",
         "laravel/framework": "^9.2",
+        "laravel/passport": "^11.0",
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.0",
         "php-open-source-saver/jwt-auth": "^1.4",
-        "predis/predis": "^1.1"
+        "predis/predis": "^1.1",
+        "symfony/psr-http-message-bridge": "^2.1"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
