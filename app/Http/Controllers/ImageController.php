@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ImageController extends Controller
 {
@@ -24,7 +25,7 @@ class ImageController extends Controller
     public function showAnImage($name){
         return response()->json([
             'status' => 'success',
-            'url' => getData($name)])->withHeaders([
+            'url' => $this->getData($name)])->withHeaders([
             'Access-Control-Allow-Origin' => '*',
             'Cache-Control' => 'no-cache',
         ]);

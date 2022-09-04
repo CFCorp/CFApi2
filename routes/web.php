@@ -4,9 +4,12 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SettingsController;
+
 
 
 /*

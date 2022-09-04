@@ -13,13 +13,10 @@ return [
     'configs' => [
         'default' => [
             'entrypoints' => [
-                'ssr' => 'resources/scripts/ssr.ts',
                 'paths' => [
-                    'resources/css/tailwind.css',
-                    'resources/scripts/main.ts',
                     'resources/js/app.js',
+                    'resources/sass/app.scss',
                 ],
-                'ignore' => '/\\.(d\\.ts|json)$/',
             ],
             'dev_server' => [
                 'enabled' => true,

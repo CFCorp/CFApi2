@@ -26,6 +26,5 @@ class AuthServiceProvider extends ServiceProvider
     {
         Passport::hashClientSecrets();
         $this->registerPolicies();
-        // Passport::routes();
     }
 }

@@ -2,7 +2,7 @@
 
 return [
     'defaults' => [
-        'guard' => 'api',
+        'guard' => 'web',
         'passwords' => 'users',
     ],
 
@@ -16,6 +16,7 @@ return [
         'api' => [
                 'driver' => 'passport',
                 'provider' => 'users',
+                'hash' => true,
         ],
 
     ],

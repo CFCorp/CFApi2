@@ -11,35 +11,44 @@ use App\Http\Controllers\Controller;
 
 
 class PassportAuthController extends Controller
-{   
-    use HasApiResponse;
-    
-    public function register(RegisterRequest $request, User $user)
+{
+    /**
+     * Registration
+     */
+    public function register(Request $request)
     {
-        $user = $user->saveUser($request);
-
-        return $this->httpCreated($user, 'User created successfully!');
+        $this->validate($request, [
+            'name' => 'required|min:4',
+            'email' => 'required|email',
+            'password' => 'required|min:8',
+        ]);
+ 
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password)
+        ]);
+       
+        $token = $user->createToken('CFAPI2')->accessToken;
+ 
+        return response()->json(['token' => $token], 200);
     }
-
+ 
+    /**
+     * Login
+     */
     public function login(Request $request)
     {
-        $credentials = [
+        $data = [
             'email' => $request->email,
-            'password' => $request->password,
+            'password' => $request->password
         ];
-
-        if(Auth::attempt($credentials)){ 
-            $user['user'] = Auth::user(); 
-            $user['token'] =  Auth::user()->createToken('CFAPI2')->accessToken; 
-            return $this->httpSuccess($user, 'User login successfully.');
-        } 
-        return $this->httpUnauthorizedError('Unauthorised.', ['error'=>'Username or email is not matched in our records!']);
-    }
-
-    public function logout(User $user)
-    {
-        $user->logout();
-
-        return response()->json(['Success' => 'Logged out'], 200);
-    }
+ 
+        if (auth()->attempt($data)) {
+            $token = auth()->user()->createToken('CFAPI2')->accessToken;
+            return response()->json(['token' => $token], 200);
+        } else {
+            return response()->json(['error' => 'Unauthorised'], 401);
+        }
+    }   
 }
