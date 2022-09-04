@@ -2,8 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\Api\PassportAuthController;
 
 
 /*
@@ -16,19 +16,9 @@ use App\Http\Controllers\ImageController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::post('register', [PassportAuthController::class, 'register']);
+Route::post('login', [PassportAuthController::class, 'login']);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::controller(AuthController::class)->group(function () {
-    Route::post('login', 'login');
-    Route::post('register', 'register');
-    Route::post('logout', 'logout');
-    Route::post('refresh', 'refresh');
-    Route::get('me', 'me');
-});
-
-Route::controller(ImageController::class)->group(function () {
-    Route::get('image/{name}', 'showAnImage');
+Route::middleware('auth:api')->group(function () {
+    Route::get('image/{name}', [ImageController::class, 'showAnImage']);
 });
