@@ -46,6 +46,10 @@ Change stuff in the `.env` to make it be able to connect to the database and set
 ##### Setup database
 Change the correct variables in your own `.env` file and then run the migration command with `php` that is built-in to this `php artisan migrate:fresh`
 
+# How to do oauth tokens
+### Endpoints
+- Will explain this at a later point, will also add some stuff to the dashboard to simplfy the process
+
 # Roadmap / todo list:
 - Create a dashboard with all of the statistics
 - Caching with Redis
