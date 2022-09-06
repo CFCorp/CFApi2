@@ -52,6 +52,9 @@
             <section class="buttons">
                 <a href="https://discord.gg/DDRbw7W" class="btn animation hover-scale snapchat-text computerfreaker-bg black-dropshadow" target="_blank">Main Server (Discord)</a>
                 <a href="https://discord.gg/gzWwtWG" class="btn animation hover-scale snapchat-text computerfreaker-bg black-dropshadow" target="_blank">API Server (Discord)</a>
+                @auth
+                <a href="{{ route('home') }}" class="btn animation hover-scale snapchat-text computerfreaker-bg black-dropshadow" target="">Dashboard</a>
+                @endauth
             </section>
     </div>
     <a href="#login"><div class="arrow bounce">
