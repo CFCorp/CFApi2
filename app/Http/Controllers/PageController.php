@@ -15,16 +15,6 @@ class PageController extends Controller
     }
 
     /**
-     * Display maps page
-     *
-     * @return \Illuminate\View\View
-     */
-    public function maps()
-    {
-        return view('pages.maps');
-    }
-
-    /**
      * Display tables page
      *
      * @return \Illuminate\View\View
@@ -62,15 +52,5 @@ class PageController extends Controller
     public function typography()
     {
         return view('pages.typography');
-    }
-
-    /**
-     * Display upgrade page
-     *
-     * @return \Illuminate\View\View
-     */
-    public function upgrade()
-    {
-        return view('pages.upgrade');
     }
 }

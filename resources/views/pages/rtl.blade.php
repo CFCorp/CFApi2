@@ -52,13 +52,6 @@
               <p>الرموز</p>
             </a>
           </li>
-          <li>
-            <a href="{{ route('pages.maps') }}">
-              <i class="tim-icons icon-pin"></i>
-              <p>خرائط</p>
-            </a>
-          </li>
-          <li>
             <a href="{{ route('pages.notifications') }}">
               <i class="tim-icons icon-bell-55"></i>
               <p>إخطارات</p>
@@ -86,12 +79,6 @@
             <a href="{{ route('pages.rtl') }}">
               <i class="tim-icons icon-world"></i>
               <p>دعم RTL</p>
-            </a>
-          </li>
-          <li>
-            <a href="{{ route('pages.upgrade') }}">
-              <i class="tim-icons icon-spaceship"></i>
-              <p>التطور للاحترافية</p>
             </a>
           </li>
         </ul>
@@ -582,7 +569,7 @@
             <script>
               document.write(new Date().getFullYear())
             </script> made with <i class="tim-icons icon-heart-2"></i> by
-            <a href="javascript:void(0)" target="_blank">Creative Tim</a> for a better web.
+            <a href="javascript:void(0)" target="_blank">computerfreaker</a>
           </div>
         </div>
       </footer>
@@ -611,20 +598,6 @@
           <span class="badge dark-badge ml-2"></span>
           <span class="color-label">DARK MODE</span>
         </li>
-        <li class="button-container">
-          <a href="https://www.creative-tim.com/product/black-dashboard" target="_blank" class="btn btn-primary btn-block btn-round">Download Now</a>
-          <a href="https://demos.creative-tim.com/black-dashboard/docs/1.0/getting-started/introduction.html" target="_blank" class="btn btn-default btn-block btn-round">
-            Documentation
-          </a>
-        </li>
-        <li class="header-title">Thank you for 95 shares!</li>
-        <li class="button-container text-center">
-          <button id="twitter" class="btn btn-round btn-info"><i class="fab fa-twitter"></i> &middot; 45</button>
-          <button id="facebook" class="btn btn-round btn-info"><i class="fab fa-facebook-f"></i> &middot; 50</button>
-          <br>
-          <br>
-          <a class="github-button" href="https://github.com/creativetimofficial/black-dashboard" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star ntkme/github-buttons on GitHub">Star</a>
-        </li>
       </ul>
     </div>
   </div>
@@ -633,9 +606,6 @@
   <script src="{{ asset('black') }}/js/core/popper.min.js"></script>
   <script src="{{ asset('black') }}/js/core/bootstrap.min.js"></script>
   <script src="{{ asset('black') }}/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-  <!--  Google Maps Plugin    -->
-  <!-- Place this tag in your head or just before your close body tag. -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
   <!-- Chart JS -->
   <script src="{{ asset('black') }}/js/plugins/chartjs.min.js"></script>
   <!--  Notifications Plugin    -->

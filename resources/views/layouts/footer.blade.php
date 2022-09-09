@@ -2,13 +2,8 @@
     <div class="container-fluid">
         <ul class="nav">
             <li class="nav-item">
-                <a href="https://creative-tim.com" target="blank" class="nav-link">
-                    {{ __('Creative Tim') }}
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="https://updivision.com" target="blank" class="nav-link">
-                    {{ __('Updivision') }}
+                <a href="https://computerfreaker.pw" target="blank" class="nav-link">
+                    {{ __('computerfreaker') }}
                 </a>
             </li>
             <li class="nav-item">
@@ -24,8 +19,7 @@
         </ul>
         <div class="copyright">
             &copy; {{ now()->year }} {{ __('made with') }} <i class="tim-icons icon-heart-2"></i> {{ __('by') }}
-            <a href="https://creative-tim.com" target="_blank">{{ __('Creative Tim') }}</a> &amp;
-            <a href="https://updivision.com" target="_blank">{{ __('Updivision') }}</a> {{ __('for a better web') }}.
+            <a href="https://computerfreaker.pw" target="_blank">{{ __('computerfreaker') }}</a>
         </div>
     </div>
 </footer>
