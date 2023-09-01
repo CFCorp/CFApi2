@@ -31,6 +31,39 @@ What is the difference between version 1 and version 2?
 What are you using redis for?
 - it is just a simple caching step between the API requests and the images it just makes loading the images a bit more optimzed and faster due to this if you decide to run it on your own machine Redis is highly recommended to be used.
 
+Why are you rebuilding your API
+1.  PHP is slow and I want better speed
+2. PHP setup is a pain in the ass
+3. I want to learn some new stuff
+
+# So what will change?
+
+- Backend in Rust
+- Frontend in Python With C
+- Database will be switched to Neo4J
+- Dashboards
+- Login Page
+- Authentication Methods
+- User Tokens and UUIDs
+- a lot of minor stuff
+
+# Is there a chance that the code will be public
+- Yes it will be in the future fully open source
+
+# Roadmap / TODO
+
+- [ ] Make the whole backend
+- [ ] Make the frontend
+- [ ] Learn how to use Neo4J 
+- [ ] use Neo4J as a database
+- [ ] remake the login page
+- [ ] remake the dashboard
+- [ ] remake the loggers
+- [ ] add tagging
+- [ ] 2FA
+- [ ] Better Uploaders
+- [ ] Redis Caching
+
 
 # Requirements:
 - Web server (Apache/Nginx, PHP, PostgreSQL)
@@ -50,9 +83,4 @@ Change the correct variables in your own `.env` file and then run the migration 
 ### Endpoints
 - Will explain this at a later point, will also add some stuff to the dashboard to simplfy the process
 
-# Roadmap / todo list:
-- Create a dashboard with all of the statistics
-- Caching with Redis
-- Simple file uploader
-- 2FA for login
-- Remove registration page that is used for debugging
+
