@@ -16,4 +16,3 @@ build.generate(
     URL="https://api.computerfreaker.pw", data=data,
     minify_html=True
 )
-Í
