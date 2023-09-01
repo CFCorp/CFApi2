@@ -70,14 +70,15 @@ Why are you rebuilding your API
 - Redis
 
 ### How to setup for dummy's
-#### Recommended is Linux
-Download & install composer and after that run this in the project directory
-`composer install --optimize-autoloader`.
+#### Recommended is Linux/Unix
+Download & install Python and Rust for this project then run these 2 commands
+`cd FrontEnd && Python3 index.py`.
+`cd BackEnd/neat-api && cargo run`
 
 Change stuff in the `.env` to make it be able to connect to the database and set the right logging level
 
 ##### Setup database
-Change the correct variables in your own `.env` file and then run the migration command with `php` that is built-in to this `php artisan migrate:fresh`
+Change the correct variables in your own `.env` file then run `cargo run` it will auto populate the database
 
 # How to do oauth tokens
 ### Endpoints
