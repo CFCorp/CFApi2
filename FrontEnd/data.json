@@ -1,0 +1,12 @@
+{
+  "customUrls": [
+    {
+      "name": "anime",
+      "url": "/api/v2/anime"
+    },
+    {
+      "name": "hentai",
+      "url": "/api/v2/hentai"
+    }
+  ]
+}
