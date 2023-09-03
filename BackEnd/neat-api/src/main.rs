@@ -3,6 +3,7 @@ use parking_lot::RwLock;
 use std::collections::HashMap;
 use std::sync::Arc;
 use serde::{Serialize, Deserialize};
+use dotenv::dotenv;
 
 type Items = HashMap<String, i32>;
 
@@ -77,46 +78,22 @@ fn post_json() -> impl Filter<Extract = (Item,), Error = warp::Rejection> + Clon
 
 #[tokio::main]
 async fn main() {
-    let store = Store::new();
-    let store_filter = warp::any().map(move || store.clone());
+    dotenv::dotenv().ok();
+    // concurrent queries
+    let uri = "127.0.0.1:7687";
+    let user = dotenv::var("DATABASE_USERNAME").unwrap();
+    let pass = dotenv::var("DATABASE_PASSWORD").unwrap();
+    let graph = Arc::new(Graph::new(&uri, user, pass).await.unwrap());
 
-    let add_items = warp::post()
-        .and(warp::path("v2"))
-        .and(warp::path("groceries"))
-        .and(warp::path::end())
-        .and(post_json())
-        .and(store_filter.clone())
-        .and_then(update_grocery_list);
+    // Show debug logs by default by setting `RUST_LOG=restful_rust=debug`
+    if env::var_os("RUST_LOG").is_none() {
+        env::set_var("RUST_LOG", "api_stuff=debug");
+    }
+    pretty_env_logger::init();
+    let db = schema::example_db();
+    let api = routes::games_routes(db);
+    let routes = api.with(warp::log("api_stuff"));
 
-    let get_items = warp::get()
-        .and(warp::path("2"))
-        .and(warp::path("groceries"))
-        .and(warp::path::end())
-        .and(store_filter.clone())
-        .and_then(get_grocery_list);
-
-    let delete_item = warp::delete()
-        .and(warp::path("v2"))
-        .and(warp::path("groceries"))
-        .and(warp::path::end())
-        .and(delete_json())
-        .and(store_filter.clone())
-        .and_then(delete_grocery_list_item);
-
-
-    let update_item = warp::put()
-        .and(warp::path("v1"))
-        .and(warp::path("groceries"))
-        .and(warp::path::end())
-        .and(post_json())
-        .and(store_filter.clone())
-        .and_then(update_grocery_list);
-
-
-
-    let routes = add_items.or(get_items).or(delete_item).or(update_item);
-
-    warp::serve(routes)
-        .run(([127, 0, 0, 1], 3030))
-        .await;
+    // Start the server
+    warp::serve(routes).run(([127, 0, 0, 1], 3030)).await;
 }
