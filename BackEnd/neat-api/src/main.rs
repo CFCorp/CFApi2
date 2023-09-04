@@ -2,6 +2,8 @@ use warp::{Filter};
 use dotenvy::dotenv;
 use neo4rs::*;
 use std::env;
+use serde::{Deserialize, Serialize};
+use serde_json;
 
 #[tokio::main]
 async fn main() {
@@ -26,6 +28,24 @@ async fn main() {
     let value: i64 = row.get("1").unwrap();
     assert_eq!(1, value);
     assert!(result.next().await.unwrap().is_none());
+
+    let data = fs::read_to_string("../../../FrontEnd/data.json").expect("Unable to read file");
+    let json: serde_json::Value =
+        serde_json::from_str(&data).expect("JSON was not well-formatted");
+
+    let jsonData: Data = serde_json::from_str(data).unwrap();
+
+    for name in jsonData.names {
+        let handle = tokio::spawn(async move {
+            let mut result = graph.execute(
+              query(format!("CREATE IF NOT EXISTS {value}", value=name);)
+            ).await.unwrap();
+            while let Ok(Some(row)) = result.next().await {
+                count.fetch_add(1, Ordering::Relaxed);
+            }
+        });
+        handles.push(handle);
+    }
 
 
     // Show debug logs by default by setting `RUST_LOG=restful_rust=debug`
