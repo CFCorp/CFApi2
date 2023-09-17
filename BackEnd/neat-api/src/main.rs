@@ -3,7 +3,22 @@ use dotenvy::dotenv;
 use neo4rs::*;
 use std::env;
 use serde::{Deserialize, Serialize};
-use serde_json;
+use serde_json::{Result, Value};
+use std::fs;
+use std::sync::atomic::*;
+use futures::stream::*;
+use std::sync::Arc;
+
+#[derive(Serialize, Deserialize)]
+struct CustomUrls {
+    name: String,
+    url: String,
+}
+
+#[derive(Serialize, Deserialize)]
+struct Endpoints {
+    customUrls: Vec<CustomUrls>,
+}
 
 #[tokio::main]
 async fn main() {
@@ -22,29 +37,32 @@ async fn main() {
         .max_connections(10)
         .build()
         .unwrap();
-    let graph = Graph::connect(config).await.unwrap();
+    let mut graph = Arc::new(Graph::connect(config).await.unwrap());
+    let mut handles = Vec::new();
+    let mut count = Arc::new(AtomicU32::new(0));
     let mut result = graph.execute(query("RETURN 1")).await.unwrap();
     let row = result.next().await.unwrap().unwrap();
     let value: i64 = row.get("1").unwrap();
     assert_eq!(1, value);
     assert!(result.next().await.unwrap().is_none());
 
-    let data = fs::read_to_string("../../../FrontEnd/data.json").expect("Unable to read file");
-    let json: serde_json::Value =
-        serde_json::from_str(&data).expect("JSON was not well-formatted");
+    let file = fs::File::open("../../../FrontEnd/data.json").expect("can not read the file properly");
+    let reader = std::io::BufReader::new(file);
+    let customUrls: Endpoints = serde_json::from_reader(reader).expect("file couldn't be read in time");
 
-    let jsonData: Data = serde_json::from_str(data).unwrap();
 
-    for name in jsonData.names {
-        let handle = tokio::spawn(async move {
+    for customUrl in customUrls.customUrls {
+        let graph = graph.clone();
+        let count = count.clone();
+        let meow = tokio::spawn(async move {
             let mut result = graph.execute(
-              query(format!("CREATE IF NOT EXISTS {value}", value=name);)
+              query(format!("CREATE IF NOT EXISTS {}", &customUrl.name).as_str())
             ).await.unwrap();
             while let Ok(Some(row)) = result.next().await {
-                count.fetch_add(1, Ordering::Relaxed);
+                &count.fetch_add(1, Ordering::Relaxed);
             }
         });
-        handles.push(handle);
+        handles.push(meow);
     }
 
 
