@@ -17,7 +17,7 @@ struct CustomUrls {
 
 #[derive(Serialize, Deserialize)]
 struct Endpoints {
-    customUrls: Vec<CustomUrls>,
+    custom_urls: Vec<CustomUrls>,
 }
 
 #[tokio::main]
@@ -48,18 +48,18 @@ async fn main() {
 
     let file = fs::File::open("../../../FrontEnd/data.json").expect("can not read the file properly");
     let reader = std::io::BufReader::new(file);
-    let customUrls: Endpoints = serde_json::from_reader(reader).expect("file couldn't be read in time");
+    let custom_urls: Endpoints = serde_json::from_reader(reader).expect("file couldn't be read in time");
 
 
-    for customUrl in customUrls.customUrls {
+    for custom_url in customUrls.customUrls {
         let graph = graph.clone();
         let count = count.clone();
         let meow = tokio::spawn(async move {
             let mut result = graph.execute(
-              query(format!("CREATE IF NOT EXISTS {}", &customUrl.name).as_str())
+              query(format!("CREATE IF NOT EXISTS {}", &custom_url.name).as_str())
             ).await.unwrap();
             while let Ok(Some(row)) = result.next().await {
-                &count.fetch_add(1, Ordering::Relaxed);
+                count.fetch_add(1, Ordering::Relaxed);
             }
         });
         handles.push(meow);
