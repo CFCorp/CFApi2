@@ -1,9 +1,11 @@
+#![allow(non_snake_case)]
+#![allow(unused_variables)]
+#![allow(unused_imports)]
 use warp::{Filter};
 use dotenvy::dotenv;
 use neo4rs::*;
 use std::env;
 use serde::{Deserialize, Serialize};
-use serde_json::{Result, Value};
 use std::fs;
 use std::sync::atomic::*;
 use futures::stream::*;
@@ -17,7 +19,7 @@ struct CustomUrls {
 
 #[derive(Serialize, Deserialize)]
 struct Endpoints {
-    custom_urls: Vec<CustomUrls>,
+    customUrls: Vec<CustomUrls>,
 }
 
 #[tokio::main]
@@ -37,26 +39,26 @@ async fn main() {
         .max_connections(10)
         .build()
         .unwrap();
-    let mut graph = Arc::new(Graph::connect(config).await.unwrap());
+    let graph = Arc::new(Graph::connect(config).await.unwrap());
     let mut handles = Vec::new();
-    let mut count = Arc::new(AtomicU32::new(0));
+    let count = Arc::new(AtomicU32::new(0));
     let mut result = graph.execute(query("RETURN 1")).await.unwrap();
     let row = result.next().await.unwrap().unwrap();
     let value: i64 = row.get("1").unwrap();
     assert_eq!(1, value);
     assert!(result.next().await.unwrap().is_none());
 
-    let file = fs::File::open("../../../FrontEnd/data.json").expect("can not read the file properly");
+    let file = fs::File::open("../../FrontEnd/data.json").expect("can not read the file properly");
     let reader = std::io::BufReader::new(file);
     let custom_urls: Endpoints = serde_json::from_reader(reader).expect("file couldn't be read in time");
 
 
-    for custom_url in customUrls.customUrls {
+    for custom_url in custom_urls.customUrls {
         let graph = graph.clone();
         let count = count.clone();
         let meow = tokio::spawn(async move {
             let mut result = graph.execute(
-              query(format!("CREATE IF NOT EXISTS {}", &custom_url.name).as_str())
+                query("MERGE (Sex:List{name:$url}) RETURN Sex").param("url", custom_url.name)
             ).await.unwrap();
             while let Ok(Some(row)) = result.next().await {
                 count.fetch_add(1, Ordering::Relaxed);
