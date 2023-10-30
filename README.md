@@ -66,8 +66,11 @@ Why are you rebuilding your API
 
 
 # Requirements:
-- Web server (Apache/Nginx, PHP, PostgreSQL)
+- Rust
+- Python 3
+- Neo4J
 - Redis
+- Web Server
 
 ### How to setup for dummy's
 #### Recommended is Linux/Unix
