@@ -48,7 +48,7 @@ Why are you rebuilding your API
 - a lot of minor stuff
 
 # Is there a chance that the code will be public
-- Yes it will be in the future fully open source
+- ~~Yes it will be in the future fully open source~~ It now is
 
 # Roadmap / TODO
 
