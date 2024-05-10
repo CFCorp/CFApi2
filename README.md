@@ -48,7 +48,7 @@ Why are you rebuilding your API
 - a lot of minor stuff
 
 # Is there a chance that the code will be public
-- Yes it will be in the future fully open source
+- ~~Yes it will be in the future fully open source~~ It now is
 
 # Roadmap / TODO
 
@@ -66,8 +66,11 @@ Why are you rebuilding your API
 
 
 # Requirements:
-- Web server (Apache/Nginx, PHP, PostgreSQL)
+- Rust
+- Python 3
+- Neo4J
 - Redis
+- Web Server
 
 ### How to setup for dummy's
 #### Recommended is Linux/Unix
