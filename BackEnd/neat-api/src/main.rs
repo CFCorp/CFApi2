@@ -1,7 +1,7 @@
 #![allow(non_snake_case)]
 #![allow(unused_variables)]
 #![allow(unused_imports)]
-use warp::{Filter};
+use warp::{http::StatusCode, Filter, Rejection};
 use dotenvy::dotenv;
 use neo4rs::*;
 use std::env;
@@ -10,6 +10,8 @@ use std::fs;
 use std::sync::atomic::*;
 use futures::stream::*;
 use std::sync::Arc;
+
+mod handlers;
 
 #[derive(Serialize, Deserialize)]
 struct CustomUrls {
@@ -21,6 +23,8 @@ struct CustomUrls {
 struct Endpoints {
     customUrls: Vec<CustomUrls>,
 }
+
+type Result<T> = std::result::Result<T, Rejection>;
 
 #[tokio::main]
 async fn main() {
@@ -77,6 +81,8 @@ async fn main() {
     // GET /hello/warp => 200 OK with body "Hello, warp!"
     let hello = warp::path!("hello" / String)
         .map(|name| format!("Hello, {}!", name));
+
+    // let health_route = warp::reply::with_status("Ok", StatusCode::OK);
 
     warp::serve(hello)
         .run(([127, 0, 0, 1], 3030))

@@ -7,6 +7,10 @@
     {
       "name": "hentai",
       "url": "/api/v2/hentai"
+    },
+    {
+      "name": "list",
+      "url": "/api/v2/list"
     }
   ]
 }
