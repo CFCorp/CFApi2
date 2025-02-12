@@ -54,8 +54,6 @@ Why are you rebuilding your API
 
 - [ ] Make the whole backend
 - [ ] Make the frontend
-- [ ] Learn how to use Neo4J 
-- [ ] use Neo4J as a database
 - [ ] remake the login page
 - [ ] remake the dashboard
 - [ ] remake the loggers
@@ -68,7 +66,7 @@ Why are you rebuilding your API
 # Requirements:
 - Rust
 - Python 3
-- Neo4J
+- MongoDB
 - Redis
 - Web Server
 

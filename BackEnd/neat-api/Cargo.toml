@@ -6,16 +6,11 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-warp = "0.x"
-parking_lot = "0.x"
-serde = { version = "1.x", features = ["derive"] }
-tokio = { version = "1", features = ["full"] }
-chrono = { version = "0.x", features = ["serde"] }
-log = "0.4.x"
-pretty_env_logger = "0.x"
-dotenvy = "0.x"
-dotenvy_macro = "0.x"
-neo4rs = { version = "0.x"}
-futures = { version = "0.3.x"}
-uuid = { version = "1.x" }
-serde_json = "1.x"
+rocket = {version = "0.5.0-rc.2", features = ["json"]}
+serde = "1.0.136"
+dotenv = "0.15.0"
+
+[dependencies.mongodb]
+version = "2.2.0"
+default-features = false
+features = ["sync"] 
