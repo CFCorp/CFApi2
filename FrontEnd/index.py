@@ -13,6 +13,6 @@ with open("./data.json", "r", encoding="utf-8") as f:
 
 build.generate(
     debug=False if argument == "build" else True,
-    URL="https://api.computerfreaker.pw", data=data,
+    URL="https://api.computerfreaker.com", data=data,
     minify_html=True
 )

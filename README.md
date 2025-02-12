@@ -26,7 +26,7 @@ A small API that sends anime/hentai images in JSON.
 - I don't recommend using my stuff but only for testing purposes (maybe).
 
 What is the difference between version 1 and version 2?
-- The backend of both of the versions are completely different and optimized for different types of workload due to this [v1](https://github.com/CFCorp/CFsAPI) will be depreciated and not accessable anymore in the future when [v2](https://github.com/CFCorp/CFApi2) is fully released.
+- The backend of both of the versions are completely different and optimized for different types of workload due to this [v1](https://github.com/CFCorp/CFsAPI) will be depreciated and not accessible anymore in the future when [v2](https://github.com/CFCorp/CFApi2) is fully released.
 
 What are you using redis for?
 - it is just a simple caching step between the API requests and the images it just makes loading the images a bit more optimzed and faster due to this if you decide to run it on your own machine Redis is highly recommended to be used.
@@ -40,7 +40,7 @@ Why are you rebuilding your API
 
 - Backend in Rust
 - Frontend in Python With C
-- Database will be switched to Neo4J
+- Database will be switched to MongoDB
 - Dashboards
 - Login Page
 - Authentication Methods
