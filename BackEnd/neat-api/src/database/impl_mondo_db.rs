@@ -22,8 +22,8 @@ impl MongoDB {
         MongoDB { database }
     }
 
-    pub async fn get_image_url(&self) -> Option<ImageUrl> {
-        let pipeline = vec![doc! { "$sample": { "size": 1 } }];
+    pub async fn get_image_url(&self, category: &str) -> Option<ImageUrl> {
+        let pipeline = vec![ doc!{ "$match" : { "category" : category }}, doc! { "$sample": { "size": 1 } }];
         let cursor = self.database.collection::<ImageUrl>("Urls").aggregate(pipeline, None).await;
         cursor.expect("not found").next().await.and_then(|doc| bson::from_document(doc.ok()?).ok())
     }

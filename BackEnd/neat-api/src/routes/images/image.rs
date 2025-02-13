@@ -11,15 +11,16 @@ use rocket::State;
 
 //(private) request with authorization model (token)
 //This is very scuffed
-#[get("/private/image")]
+#[get("/private/image/<category>")]
 pub async fn get_image(
     auth: AuthorizedUser,
     database: &State<MongoDB>,
+    category: &str
 ) -> Result<Json<HelloUrlResponse>, (Status, Json<ErrorResponse>)> {
     match check_from_db_real_names(database, auth.user_id).await {
         HelloNameError::OnlyLogin(_res_only_login) => Ok(
             Json(HelloUrlResponse {
-                url: database.get_image_url().await.map(|s: ImageUrl| s.url).expect("URL not found"),
+                url: database.get_image_url(category).await.map(|s: ImageUrl| s.url).expect("URL not found"),
                 success: "200".to_string()
         })),
         HelloNameError::NoOnlyLogin(res_no_only_login) => Ok(Json(HelloUrlResponse {

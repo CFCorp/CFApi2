@@ -94,4 +94,3 @@ pub async fn parse_id_and_find_user_by_id(
         Err(_) => FindUserById::BadId,
     }
 }
-

@@ -2,15 +2,15 @@
   "customUrls": [
     {
       "name": "anime",
-      "url": "/api/v2/anime"
+      "url": "http://localhost:8000/api/v2/public/hello"
     },
     {
       "name": "hentai",
-      "url": "/api/v2/hentai"
+      "url": "http://localhost:8000/api/v2/private/hentai"
     },
     {
       "name": "list",
-      "url": "/api/v2/list"
+      "url": "http://localhost:8000/api/v2/private/anime"
     }
   ]
 }
