@@ -1,42 +1,77 @@
-#![allow(non_snake_case)]
-#![allow(unused_variables)]
-#![allow(unused_imports)]
-
-mod api; 
-mod models;
-mod repository;
-
 #[macro_use]
 extern crate rocket;
-use rocket::{get, http::Status, serde::json::Json};
 
-//add imports below
-use api::user_api::{create_user, get_user, update_user, delete_user, get_all_users};
-use repository::mongodb_repo::MongoRepo;
+use rocket::http::Method;
+use rocket::http::Status;
+use rocket::serde::json::Json;
+use rocket_cors::{AllowedOrigins, CorsOptions};
 
-use api::url_api::{create_url, get_url, get_all_urls};
-use repository::url_repo::UrlRepo;
+use crate::constants::{UNAUTHORIZED, UNKNOWN};
+use crate::database::connect_to_db::init;
+use crate::error_response::error_responses::{
+    ErrorResponse, NOT_FOUND_JSON, UNAUTHORIZED_JSON, UNKNOWN_JSON,
+};
+use crate::helper::check_valid_text;
+use crate::routes::authorization::login::login;
+use crate::routes::authorization::registration::registration;
+use crate::routes::routes::delete_user::delete_user;
+use crate::routes::routes::get_data_user::get_data_user;
+use crate::routes::routes::hello_name::{hello_name_user, hello_world};
+use crate::routes::routes::patch_user::edit_user;
+use crate::routes::routes::refresh_tokens::refresh_tokens;
 
-#[get("/")]
-fn hello() -> Result<Json<String>, Status> {
-    Ok(Json(String::from("Hello from rust and mongoDB")))
-}
+pub mod constants;
+mod database;
+pub mod error_response;
+mod helper;
+mod models;
+mod private;
+mod routes;
 
 #[launch]
-fn rocket() -> _ {
-    let db = MongoRepo::init();
-    let urls = UrlRepo::init();
+async fn rocket() -> _ {
+    let cors = CorsOptions::default()
+        .allowed_origins(AllowedOrigins::all())
+        .allowed_methods(
+            vec![Method::Get, Method::Post, Method::Patch, Method::Delete]
+                .into_iter()
+                .map(From::from)
+                .collect(),
+        )
+        .allow_credentials(true);
     rocket::build()
-    .configure(rocket::Config::figment().merge(("port", 3030)))
-    .manage(db)
-    .manage(urls)
-    .mount("/", routes![hello, create_user])
-    .mount("/", routes![get_user])
-    .mount("/", routes![update_user])
-    .mount("/", routes![delete_user])
-    .mount("/", routes![get_all_users])
-    .mount("/", routes![create_url])
-    .mount("/", routes![get_url])
-    .mount("/", routes![get_all_urls])
+        .attach(init().await)
+        .mount(
+            "/api/v2",
+            routes![
+                registration,
+                login,
+                hello_name_user,
+                hello_world,
+                refresh_tokens,
+                delete_user,
+                edit_user,
+                get_data_user
+            ],
+        )
+        .manage(cors.to_cors())
+        .register(
+            "/",
+            catchers![unauthorized, not_found, internal_sever_error,],
+        )
 }
 
+#[catch(401)]
+pub fn unauthorized() -> Json<ErrorResponse> {
+    Json(UNAUTHORIZED_JSON)
+}
+
+#[catch(404)]
+pub fn not_found() -> Json<ErrorResponse> {
+    Json(NOT_FOUND_JSON)
+}
+
+#[catch(500)]
+pub fn internal_sever_error() -> Json<ErrorResponse> {
+    Json(UNKNOWN_JSON)
+}

@@ -4,3 +4,4 @@ target/
 .env
 Cargo.lock
 *.lock
+BackEnd/neat-api/src/private.rs
