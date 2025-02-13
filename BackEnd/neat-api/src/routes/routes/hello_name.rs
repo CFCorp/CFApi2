@@ -26,7 +26,7 @@ pub async fn hello_name_user(
 }
 
 //we check if the first and last names are in the database
-async fn check_from_db_real_names(database: &State<MongoDB>, id_str: String) -> HelloNameError {
+pub async fn check_from_db_real_names(database: &State<MongoDB>, id_str: String) -> HelloNameError {
     match parse_id_and_find_user_by_id(database, id_str).await {
         FindUserById::Ok(user) => {
             if user.first_name == "" || user.last_name == "" {

@@ -1,5 +1,6 @@
 use crate::database::connect_to_db::MongoDB;
 use crate::database::FindUserBy;
+use crate::models::model_url::ImageUrl;
 use crate::models::model_user::User;
 use bcrypt::hash;
 use mongodb::bson::oid::ObjectId;
@@ -94,3 +95,4 @@ pub async fn parse_id_and_find_user_by_id(
         Err(_) => FindUserById::BadId,
     }
 }
+

@@ -1,13 +1,16 @@
 use bcrypt::verify;
 use mongodb::bson::oid::ObjectId;
-use mongodb::{bson, Database};
+use mongodb::{bson, results, Database};
+use rocket::futures::StreamExt;
 use rocket::serde::json::Json;
+use mongodb::bson::{doc, Document};
 
 use crate::constants::{EXPIRATION_REFRESH_TOKEN, EXPIRATION_TOKEN};
 use crate::database::connect_to_db::MongoDB;
 use crate::database::{FindUserBy, LoginError, RegistrationError};
 use crate::helper::{find_user_by_login_and_mail, hash_text};
 use crate::models::model_user::User;
+use crate::models::model_url::ImageUrl;
 use crate::models::request::login_request::LoginRequest;
 use crate::models::request::patch_request::EditUserRequest;
 use crate::models::request::registration_request::RegistrationRequest;
@@ -17,6 +20,12 @@ use crate::routes::authorization::token::create_token::encode_token_and_refresh;
 impl MongoDB {
     pub fn new(database: Database) -> Self {
         MongoDB { database }
+    }
+
+    pub async fn get_image_url(&self) -> Option<ImageUrl> {
+        let pipeline = vec![doc! { "$sample": { "size": 1 } }];
+        let cursor = self.database.collection::<ImageUrl>("Urls").aggregate(pipeline, None).await;
+        cursor.expect("not found").next().await.and_then(|doc| bson::from_document(doc.ok()?).ok())
     }
 
     pub async fn edit_user(
