@@ -1,9 +1,9 @@
 use bcrypt::verify;
 use mongodb::bson::oid::ObjectId;
-use mongodb::{bson, results, Database};
+use mongodb::{bson, Database};
 use rocket::futures::StreamExt;
 use rocket::serde::json::Json;
-use mongodb::bson::{doc, Document};
+use mongodb::bson::doc;
 
 use crate::constants::{EXPIRATION_REFRESH_TOKEN, EXPIRATION_TOKEN};
 use crate::database::connect_to_db::MongoDB;
