@@ -24,7 +24,7 @@ impl MongoDB {
 
     pub async fn get_image_url(&self, category: &str) -> Option<ImageUrl> {
         let pipeline = vec![ doc!{ "$match" : { "category" : category }}, doc! { "$sample": { "size": 1 } }];
-        let cursor = self.database.collection::<ImageUrl>("Urls").aggregate(pipeline, None).await;
+        let cursor = self.database.collection::<ImageUrl>("Urls").aggregate(pipeline).await;
         cursor.expect("not found").next().await.and_then(|doc| bson::from_document(doc.ok()?).ok())
     }
 
@@ -45,8 +45,7 @@ impl MongoDB {
                         mail: edit_model.mail.clone(),
                         first_name: edit_model.first_name.clone(),
                         last_name: edit_model.last_name.clone()
-                    },
-                    None
+                    }
                 )
                 .await?
         );
@@ -56,7 +55,7 @@ impl MongoDB {
     pub async fn delete_user(&self, login: &str) -> mongodb::error::Result<()> {
         let collection = self.database.collection::<User>("user");
         collection
-            .delete_one(bson::doc! { "login": login }, None)
+            .delete_one(bson::doc! { "login": login })
             .await?;
         Ok(())
     }
@@ -69,7 +68,7 @@ impl MongoDB {
         let collection_user = self.database.collection::<User>("user");
 
         Ok(collection_user
-            .find_one(bson::doc! { find_by: data_find_in }, None)
+            .find_one(bson::doc! { find_by: data_find_in })
             .await?)
     }
 
@@ -80,7 +79,7 @@ impl MongoDB {
         let collection_user = self.database.collection::<User>("user");
 
         Ok(collection_user
-            .find_one(bson::doc! { "_id": data_find_in }, None)
+            .find_one(bson::doc! { "_id": data_find_in })
             .await?)
     }
 
@@ -134,7 +133,7 @@ impl MongoDB {
                         first_name: registration_request.first_name.clone(),
                         last_name: registration_request.last_name.clone(),
                     };
-                    collection_user.insert_one(&user, None).await?;
+                    collection_user.insert_one(&user).await?;
                     match encode_token_and_refresh(
                         user._id.clone(),
                         JWT_SECRET,

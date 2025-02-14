@@ -24,7 +24,7 @@ async fn connect() -> mongodb::error::Result<Database> {
     // Ping the server to see if you can connect to the cluster
     client
         .database("rust-api")
-        .run_command(bson::doc! {"ping": 1}, None)
+        .run_command(bson::doc! {"ping": 1})
         .await?;
 
     println!("connected to DB");
