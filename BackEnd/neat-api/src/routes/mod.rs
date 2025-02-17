@@ -2,6 +2,8 @@ pub mod authorization;
 pub mod routes;
 pub mod validator_authorization;
 pub mod images;
+pub mod urllist;
+
 pub enum TypeValidDataFromRegistration {
     Ok,
     BadFirstName,

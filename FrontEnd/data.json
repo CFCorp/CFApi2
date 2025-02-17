@@ -1,8 +1,12 @@
 {
   "customUrls": [
     {
-      "name": "anime",
+      "name": "heartbeat/hello",
       "url": "http://localhost:8000/api/v2/public/hello"
+    },
+    {
+      "name": "anime",
+      "url": "http://localhost:8000/api/v2/private/anime"
     },
     {
       "name": "hentai",
@@ -10,7 +14,7 @@
     },
     {
       "name": "list",
-      "url": "http://localhost:8000/api/v2/private/anime"
+      "url": "http://localhost:8000/api/v2/private/list"
     }
   ]
 }
