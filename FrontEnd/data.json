@@ -6,11 +6,11 @@
     },
     {
       "name": "anime",
-      "url": "http://localhost:8000/api/v2/private/anime"
+      "url": "http://localhost:8000/api/v2/private/image/anime"
     },
     {
       "name": "hentai",
-      "url": "http://localhost:8000/api/v2/private/hentai"
+      "url": "http://localhost:8000/api/v2/private/image/hentai"
     },
     {
       "name": "list",
