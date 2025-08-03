@@ -21,3 +21,4 @@ schemars = "1.0.4"
 okapi = { version = "0.7.0-rc.1" }
 rocket_okapi = { version = "0.9", features = ["swagger"] }
 ring = "0.17.14"
+tokio = "1.47.1"
