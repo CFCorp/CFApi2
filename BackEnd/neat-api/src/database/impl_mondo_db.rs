@@ -44,7 +44,7 @@ impl MongoDB {
                         password: user.password,
                         mail: edit_model.mail.clone(),
                         first_name: edit_model.first_name.clone(),
-                        last_name: edit_model.last_name.clone()
+                        last_name: edit_model.last_name.clone(),
                     }
                 )
                 .await?

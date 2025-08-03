@@ -6,3 +6,4 @@ Cargo.lock
 *.lock
 BackEnd/neat-api/src/private.rs
 FrontEnd/Public
+.idea
