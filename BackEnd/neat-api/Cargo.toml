@@ -20,3 +20,4 @@ rocket_cors = { git = "https://github.com/lawliet89/rocket_cors", branch = "mast
 schemars = "1.0.4"
 okapi = { version = "0.7.0-rc.1" }
 rocket_okapi = { version = "0.9", features = ["swagger"] }
+ring = "0.17.14"
