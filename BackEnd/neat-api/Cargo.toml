@@ -1,24 +1,22 @@
 [package]
 name = "neat-api"
 version = "0.1.0"
-edition = "2021"
+edition = "2024"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 dotenv = "0.15.0"
-mongodb = { version = "3.2.1"}
+mongodb = { version = "3.2.4"}
 rocket = { version = "0.5.1", features = ["json"] }
 serde = { version = "1.0", features = ["derive"] }
 bcrypt = "0.17.0"
-chrono = "0.4.19"
-jsonwebtoken = "9.3.0"
+chrono = "0.4.41"
+jsonwebtoken = "9.3.1"
 rand_core = { version = "0.9", features = ["std"] }
 base64 = "0.22.1"
-regex = "1.5.6"
+regex = "1.11.1"
 rocket_cors = { git = "https://github.com/lawliet89/rocket_cors", branch = "master" }
 schemars = "1.0.4"
-okapi = { version = "0.7.0-rc.1" }
+okapi = { version = "0.7.0" }
 rocket_okapi = { version = "0.9", features = ["swagger"] }
-ring = "0.17.14"
-tokio = "1.47.1"
