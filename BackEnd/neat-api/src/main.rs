@@ -5,6 +5,7 @@ use rocket::http::Method;
 use rocket::http::Status;
 use rocket::serde::json::Json;
 use rocket_cors::{AllowedOrigins, CorsOptions};
+use rocket::response::Redirect;
 
 use crate::constants::{UNAUTHORIZED, UNKNOWN};
 use crate::database::connect_to_db::init;
@@ -71,8 +72,8 @@ pub fn unauthorized() -> Json<ErrorResponse> {
 }
 
 #[catch(404)]
-pub fn not_found() -> Json<ErrorResponse> {
-    Json(NOT_FOUND_JSON)
+pub fn not_found() -> Redirect {
+    Redirect::to(uri!("https://computerfreaker.com/404"))
 }
 
 #[catch(500)]
