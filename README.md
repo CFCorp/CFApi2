@@ -55,7 +55,7 @@ Why are you rebuilding your API
 - [ ] Make the whole backend
 - 1. [x] connect to the database
 - 2. [x] edit the data in the database
-- 3. [ ] store generated tokens by user
+- 3. [x] store generated tokens by user
 - 4. [ ] propper logging of traffic and data
 - [ ] Make the frontend
 - 1. [ ] make frontend for user pages and login
