@@ -8,4 +8,7 @@ pub struct EditUserRequest {
 
     pub first_name: String,
     pub last_name: String,
+
+    pub token: Option<String>,
+    pub refresh_token: Option<String>,
 }

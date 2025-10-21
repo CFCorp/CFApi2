@@ -7,4 +7,6 @@ pub struct PublicDataForUser {
     pub mail: String,
     pub first_name: String,
     pub last_name: String,
+    pub token: Option<String>,
+    pub refresh_token: Option<String>,
 }

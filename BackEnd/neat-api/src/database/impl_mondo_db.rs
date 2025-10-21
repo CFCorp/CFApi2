@@ -45,6 +45,8 @@ impl MongoDB {
                         mail: edit_model.mail.clone(),
                         first_name: edit_model.first_name.clone(),
                         last_name: edit_model.last_name.clone(),
+                        token: edit_model.token.clone(),
+                        refresh_token: edit_model.refresh_token.clone(),
                     }
                 )
                 .await?
@@ -132,6 +134,8 @@ impl MongoDB {
                         mail: registration_request.mail.to_string(),
                         first_name: registration_request.first_name.clone(),
                         last_name: registration_request.last_name.clone(),
+                        token: registration_request.token.clone(),
+                        refresh_token: registration_request.token.clone(),
                     };
                     collection_user.insert_one(&user).await?;
                     match encode_token_and_refresh(
@@ -141,7 +145,13 @@ impl MongoDB {
                         EXPIRATION_REFRESH_TOKEN,
                         EXPIRATION_TOKEN,
                     ) {
-                        Ok(tokens) => Ok(RegistrationError::Ok(tokens)),
+                        Ok(tokens) => {
+                            collection_user.update_one(doc! {"_id": &user._id}, doc! {"$set": doc!{
+                                "token": tokens.token.clone(),
+                                "refresh_token": tokens.refresh_token.clone()
+                            } }).await?;
+                            Ok(RegistrationError::Ok(tokens))
+                        },
                         Err(_) => Ok(RegistrationError::Unknown),
                     }
                 }

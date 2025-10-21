@@ -19,6 +19,8 @@ pub async fn get_data_user(
             mail: user.mail.clone(),
             first_name: user.first_name.clone(),
             last_name: user.last_name.clone(),
+            token: user.token.clone(),
+            refresh_token: user.refresh_token.clone(),
         })),
         FindUserById::NoneUser => Err(UNAUTHORIZED),
         FindUserById::BadId => Err(UNAUTHORIZED),
