@@ -22,9 +22,10 @@ pub async fn get_list(
                 url: ("/api/v2/private/anime, /api/v2/private/hentai").to_string(),
                 success: "200".to_string()
         })),
-        HelloNameError::NoOnlyLogin(res_no_only_login) => Ok(Json(HelloUrlResponse {
-            success: "error".to_string(),
-            url: res_no_only_login,
+        HelloNameError::NoOnlyLogin(res_no_only_login) => Ok(
+            Json(HelloUrlResponse {
+                url: ("/api/v2/private/anime, /api/v2/private/hentai").to_string(),
+                success: "200".to_string()
         })),
         HelloNameError::ErrorID => Err(UNAUTHORIZED),
     }

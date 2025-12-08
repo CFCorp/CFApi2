@@ -23,10 +23,11 @@ pub async fn get_image(
                 url: database.get_image_url(category).await.map(|s: ImageUrl| s.url).expect("URL not found"),
                 success: "200".to_string()
         })),
-        HelloNameError::NoOnlyLogin(res_no_only_login) => Ok(Json(HelloUrlResponse {
-            success: "error".to_string(),
-            url: res_no_only_login,
-        })),
+        HelloNameError::NoOnlyLogin(res_no_only_login) => Ok(
+            Json(HelloUrlResponse {
+                url: database.get_image_url(category).await.map(|s: ImageUrl| s.url).expect("URL not found"),
+                success: "200".to_string()
+    })),
         HelloNameError::ErrorID => Err(UNAUTHORIZED),
     }
 }
