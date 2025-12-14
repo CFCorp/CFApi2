@@ -11,6 +11,7 @@ use rocket::State;
 
 //(private) request with authorization model (token)
 //This is very scuffed
+// requires more changes
 #[get("/private/image/<category>")]
 pub async fn get_image(
     auth: AuthorizedUser,

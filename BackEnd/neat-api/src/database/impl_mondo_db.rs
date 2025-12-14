@@ -112,7 +112,7 @@ impl MongoDB {
             Err(_) => Ok(LoginError::WrongLogin),
         }
     }
-
+    // requires an update, has small issue where it doesn't properly create token
     pub async fn registration(
         &self,
         registration_request: Json<RegistrationRequest>,
