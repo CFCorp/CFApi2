@@ -10,7 +10,7 @@ use rocket::serde::json::Json;
 use rocket::State;
 
 //(private) request with authorization model (token)
-//This is very scuffed
+//TODO: need to work on making this auto update when new categories have been added
 #[get("/private/list")]
 pub async fn get_list(
     auth: AuthorizedUser,
@@ -19,12 +19,12 @@ pub async fn get_list(
     match check_from_db_real_names(database, auth.user_id).await {
         HelloNameError::OnlyLogin(_res_only_login) => Ok(
             Json(HelloUrlResponse {
-                url: ("/api/v2/private/anime, /api/v2/private/hentai").to_string(),
+                url: ("/api/v2/private/image/anime, /api/v2/private/image/hentai").to_string(),
                 success: "200".to_string()
         })),
         HelloNameError::NoOnlyLogin(res_no_only_login) => Ok(
             Json(HelloUrlResponse {
-                url: ("/api/v2/private/anime, /api/v2/private/hentai").to_string(),
+                url: ("/api/v2/private/image/anime, /api/v2/private/image/hentai").to_string(),
                 success: "200".to_string()
         })),
         HelloNameError::ErrorID => Err(UNAUTHORIZED),
