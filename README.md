@@ -14,27 +14,35 @@ A small API that sends anime/hentai images in JSON.
 - More endpoints
 - Improved randomness
 - Better response times
+- Better categorization 
 
 #### FAQ
- Why do I get an error?
- - the most likely issue is that you are using the default user-agent
+ **Why do I get an error, when doing a request?**
+ - the most likely issue is that you are using the default user-agent, which is blocked by default for security reasons and AI web crawlers.
+ - another possibility is that you are using a web browser, which isn't allowed because everything requires a token to access
 
- Can I help?
-- Yes of course just make a PR.
+ **Can I help?**
+- Yes, of course just make a pull request.
 
- Will it work on my PC?
-- I don't recommend using my stuff but only for testing purposes (maybe).
+ **Will it work on my PC?**
+- I don't recommend using my stuff but only for testing purposes (maybe?).
 
-What is the difference between version 1 and version 2?
+**What is the difference between version 1 and version 2?**
 - The backend of both of the versions are completely different and optimized for different types of workload due to this [v1](https://github.com/CFCorp/CFsAPI) will be depreciated and not accessible anymore in the future when [v2](https://github.com/CFCorp/CFApi2) is fully released.
 
-What are you using redis for?
-- it is just a simple caching step between the API requests and the images it just makes loading the images a bit more optimized and faster due to this if you decide to run it on your own machine Redis is highly recommended to be used.
+**Why is version 1 no longer available?**
+- Too many issues, too little time to fix it
+- It has been archived as of **10th of May, 2022**
 
-Why are you rebuilding your API
-1.  PHP is slow and I want better speed
+**What are you using redis for?**
+- Simple caching, not a requirement but a nice to have
+
+**Why are you rebuilding your API**
+1. PHP is slow and I want better speed
 2. PHP setup is a pain in the ass
 3. I want to learn some new stuff
+4. Better source control
+5. Seperate stuff
 
 # So what will change?
 
@@ -73,20 +81,21 @@ Why are you rebuilding your API
 
 ### Requirements:
 - Rust
-- Python 3
+- Python 3  Python <=3.11 (3.12 removed a feature that is used with the frontend)
 - MongoDB
 - Redis (not required, just a nice extra)
 - Web Server
+- Domain Name
 
 ### How to set up for dummy's
 #### Recommended is Linux/Unix
 Download & install Python and Rust for this project then run these 2 commands.
 
-(frontend)
+**(frontend)**
 ```sh
 $ make dev-py
 ```
-(backend)
+**(backend)**
 ```sh
 $ make dev-ru
 ``` 
