@@ -38,25 +38,27 @@ Why are you rebuilding your API
 
 # So what will change?
 
-- Backend in Rust
-- Frontend in Python With C
+- Backend in Rust + JSON
+- Frontend in Python and C
 - Database will be switched to MongoDB
 - Dashboards
 - Login Page
 - Authentication Methods
 - User Tokens and UUIDs
-- a lot of minor stuff
+- a lot of minor stuff (response time, optimization, picture storage, etc.)
 
 # Is there a chance that the code will be public
 - ~~Yes it will be in the future fully open source~~ It now is
 
 # Roadmap / TODO
+### change that the roadmap will get more added depending on my findings
 
 - [ ] Make the whole backend
 - 1. [x] connect to the database
 - 2. [x] edit the data in the database
 - 3. [x] store generated tokens by user
-- 4. [ ] propper logging of traffic and data
+- 4. [ ] keep stored tokens, even on application reboot
+- 5. [ ] propper logging of traffic and data
 - [ ] Make the frontend
 - 1. [ ] make frontend for user pages and login
 - 2. [x] make the frontpage
@@ -69,18 +71,27 @@ Why are you rebuilding your API
 - [ ] Redis Caching / Any caching method
 
 
-# Requirements:
+### Requirements:
 - Rust
 - Python 3
 - MongoDB
-- Redis
+- Redis (not required, just a nice extra)
 - Web Server
 
 ### How to set up for dummy's
 #### Recommended is Linux/Unix
-Download & install Python and Rust for this project then run these 2 commands
-`cd FrontEnd && Python3 index.py`.
-`cd BackEnd/neat-api && cargo run`
+Download & install Python and Rust for this project then run these 2 commands.
+
+(frontend)
+```sh
+$ make dev-py
+```
+(backend)
+```sh
+$ make dev-ru
+``` 
+
+### Both of these are required.
 
 Change stuff in the `.env` to make it be able to connect to the database and set the right logging level.
 

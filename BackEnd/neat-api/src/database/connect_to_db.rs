@@ -18,6 +18,8 @@ pub async fn init() -> AdHoc {
     })
 }
 
+
+// Temporary DB name, might change later
 async fn connect() -> mongodb::error::Result<Database> {
     let client_options = ClientOptions::parse(URL_DB).await?;
     let client = Client::with_options(client_options)?;

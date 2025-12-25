@@ -1,6 +1,10 @@
 {
   "customUrls": [
     {
+      "name": "Main Website",
+      "url": "https://computerfreaker.com"
+    },
+    {
       "name": "heartbeat/hello",
       "url": "http://localhost:8000/api/v2/public/hello"
     },

@@ -22,6 +22,8 @@ impl MongoDB {
         MongoDB { database }
     }
 
+    // function doesn't work after restart, database tokens not working properly
+    // TODO: fix tokens being properly implemented
     pub async fn get_image_url(&self, category: &str) -> Option<ImageUrl> {
         let pipeline = vec![ doc!{ "$match" : { "category" : category }}, doc! { "$sample": { "size": 1 } }];
         let cursor = self.database.collection::<ImageUrl>("Urls").aggregate(pipeline).await;
@@ -85,6 +87,8 @@ impl MongoDB {
             .await?)
     }
 
+    // login function, also resets tokens generated on reboot
+    // TODO: make the tokens stay permanent
     pub async fn login(
         &self,
         login_request: Json<LoginRequest>,
@@ -112,6 +116,7 @@ impl MongoDB {
             Err(_) => Ok(LoginError::WrongLogin),
         }
     }
+
     // requires an update, has small issue where it doesn't properly create token
     pub async fn registration(
         &self,
